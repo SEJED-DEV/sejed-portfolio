@@ -1,0 +1,190 @@
+.contact {
+  position: relative;
+  overflow: hidden;
+}
+
+.orb1 { width: 400px; height: 400px; bottom: -80px; right: -100px; }
+.orb2 { width: 350px; height: 350px; top: 10%; left: -80px; }
+
+.wrapper {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper .section-subtitle {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.socialCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  text-decoration: none;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.socialCard:hover .socialIcon {
+  background: var(--social-color);
+  color: #fff;
+  box-shadow: 0 0 20px var(--social-color);
+}
+
+.socialCard:hover .arrow {
+  color: var(--social-color);
+  transform: translate(2px, -2px);
+}
+
+.socialIcon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.socialInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.socialName {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.socialValue {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.arrow {
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.callNote {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: rgba(37, 211, 102, 0.08);
+  border: 1px solid rgba(37, 211, 102, 0.2);
+  border-radius: var(--radius-md);
+  margin-bottom: 32px;
+}
+
+.callNote p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.callNote strong {
+  color: var(--text-primary);
+}
+
+.callIcon {
+  font-size: 1.3rem;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.ctaText {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Discord Copied styles */
+.discordCard {
+  cursor: pointer;
+}
+
+.socialCard:hover .copyIcon {
+  color: var(--social-color);
+  transform: scale(1.1);
+}
+
+.copyIcon {
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+/* Floating Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 84px; /* offset slightly to avoid overlapping scroll-to-top button */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  background: rgba(15, 23, 42, 0.85); /* dark slate slate background */
+  border: 1px solid rgba(16, 185, 129, 0.4); /* glowing green border */
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(20px);
+  z-index: 10000;
+  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.15);
+}
+
+:global(:root.light) .toast {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.toastText {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.toastPulse {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+  animation: toastPulseAnim 2s infinite;
+}
+
+@keyframes toastPulseAnim {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+@media (max-width: 640px) {
+  .toast {
+    right: 20px;
+    left: 20px;
+    bottom: 84px; /* sit comfortably above the scroll button */
+    justify-content: center;
+  }
+}

@@ -1,0 +1,266 @@
+.about {
+  position: relative;
+  overflow: hidden;
+}
+
+.orb {
+  width: 400px;
+  height: 400px;
+  top: 20%;
+  right: -100px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.story p {
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.story strong {
+  color: var(--text-primary);
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.highlightCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+}
+
+.highlightCard:hover {
+  transform: translateY(-2px);
+}
+
+.highlightIcon {
+  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.1);
+  flex-shrink: 0;
+}
+
+.highlightCard div:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlightCard strong {
+  color: var(--text-primary);
+  font-size: 0.92rem;
+}
+
+.highlightCard span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-family: 'Fira Code', monospace;
+}
+
+.timelineContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.timelineTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timelineHint {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: normal;
+}
+
+.timelineTrack {
+  position: relative;
+  padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.timelineItem {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0 0 28px 0;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.timelineItem:last-child {
+  margin-bottom: 0;
+}
+
+.timelineLine {
+  position: absolute;
+  left: -23px;
+  top: 18px;
+  bottom: -28px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  z-index: 1;
+}
+
+.timelineItem:last-child .timelineLine {
+  display: none;
+}
+
+.timelineDot {
+  position: absolute;
+  left: -28px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.dotInside {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.timelineContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 12px;
+  transition: all 0.2s ease;
+}
+
+.timelineYear {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.timelineLabel {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+/* Hover & Active States */
+.timelineItem:hover .timelineDot {
+  border-color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.2);
+}
+
+.timelineItem:hover .timelineYear {
+  color: var(--accent-cyan);
+}
+
+.timelineItem:hover .timelineLabel {
+  color: var(--text-primary);
+}
+
+.timelineActive .timelineDot {
+  background: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-cyan);
+}
+
+.timelineActive .dotInside {
+  background: var(--bg-primary);
+}
+
+.timelineActive .timelineYear {
+  color: var(--accent-cyan);
+}
+
+.timelineActive .timelineLabel {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Detail Card styles */
+.detailContainer {
+  margin-top: 24px;
+  width: 100%;
+}
+
+.detailCard {
+  padding: 22px !important;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.detailHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.detailEmoji {
+  font-size: 1.3rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 182, 212, 0.08);
+  border-radius: 8px;
+  border: 1px solid rgba(6, 182, 212, 0.15);
+}
+
+.detailTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.detailDesc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

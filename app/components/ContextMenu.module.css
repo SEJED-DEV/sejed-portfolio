@@ -1,0 +1,71 @@
+.menu {
+  position: fixed;
+  z-index: 99999;
+  width: 200px;
+  padding: 8px !important;
+  background: rgba(10, 10, 20, 0.88) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(99, 102, 241, 0.08);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+:global(:root.light) .menu {
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  padding: 6px 12px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0;
+}
+
+.item {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  width: 100%;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.item span {
+  font-size: 1rem;
+}
+
+.item:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--text-primary);
+  padding-left: 16px;
+}
+
+.closeItem {
+  color: var(--text-muted);
+}
+
+.closeItem:hover {
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+}
