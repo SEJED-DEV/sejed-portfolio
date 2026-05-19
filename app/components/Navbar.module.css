@@ -89,6 +89,9 @@
   font-weight: 500;
   transition: color 0.3s;
   padding-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .link:hover {

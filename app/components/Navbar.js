@@ -2,11 +2,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
+import Flag from './Flag';
 
 const essentialLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
-  { label: '🇵🇸 Palestine', href: '#palestine' },
+  { label: 'Palestine', href: '#palestine', flag: 'PS' },
   { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -100,6 +101,7 @@ export default function Navbar() {
                 href={link.href}
                 className={`${styles.link} ${active === link.href ? styles.activeLink : ''}`}
               >
+                {link.flag && <Flag country={link.flag} size="sm" />}
                 {link.label}
                 {active === link.href && (
                   <motion.div className={styles.activeDot} layoutId="navDot" />
