@@ -14,7 +14,6 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Effects from './components/Effects';
 import ContextMenu from './components/ContextMenu';
-import CustomizerPanel from './components/CustomizerPanel';
 import { defaultConfig } from './config/defaultConfig';
 
 export default function Home() {
@@ -32,7 +31,6 @@ export default function Home() {
     <div className={themeClass} style={{ fontFamily: getFontFamily(config.personal.themeFont) }}>
       <Effects fx={config.personal.backgroundFx} />
       <ContextMenu />
-      <CustomizerPanel config={config} onChange={setConfig} />
       <Navbar />
       <main>
         <Hero personal={config.personal} />
