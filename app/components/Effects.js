@@ -111,6 +111,10 @@ export default function Effects({ fx = 'particles' }) {
       pulseDirection: Math.random() > 0.5 ? 1 : -1,
     }));
 
+    // Clear any previous shadow settings once
+    ctx.shadowBlur = 0;
+    ctx.shadowColor = 'transparent';
+
     const drawParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -129,12 +133,21 @@ export default function Effects({ fx = 'particles' }) {
           if (p.alpha > 0.7 || p.alpha < 0.2) p.pulseDirection *= -1;
         }
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${baseColor}, ${p.alpha})`;
-        ctx.shadowBlur = isNebula ? p.size * 0.8 : p.size * 2;
-        ctx.shadowColor = `rgba(${baseColor}, ${isNebula ? 0.2 : 0.5})`;
-        ctx.fill();
+        if (isNebula) {
+          const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+          gradient.addColorStop(0, `rgba(${baseColor}, ${p.alpha})`);
+          gradient.addColorStop(0.5, `rgba(${baseColor}, ${p.alpha * 0.4})`);
+          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillStyle = `rgba(${baseColor}, ${p.alpha})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
       });
 
       animationFrameId = requestAnimationFrame(drawParticles);
@@ -145,7 +158,7 @@ export default function Effects({ fx = 'particles' }) {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isMobile]);
+  }, [isMobile, fx]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
