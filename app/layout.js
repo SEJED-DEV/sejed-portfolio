@@ -2,17 +2,39 @@ import './globals.css';
 
 export const metadata = {
   title: 'Sejed Trabelsi — Full Stack Developer',
-  description: 'Full Stack Developer from Tunisia. 17 years old, 6+ years of experience. Specializing in Node.js, Next.js, and building scalable web applications and bots.',
-  keywords: ['Sejed Trabelsi', 'Full Stack Developer', 'Node.js', 'Next.js', 'Tunisia', 'Web Developer'],
-  authors: [{ name: 'Sejed Trabelsi' }],
+  description: 'Full Stack Developer from Tunisia. 17 years old, 6+ years of experience. Specializing in Node.js, Next.js, and building scalable web applications and Discord bots serving 2.4M+ users.',
+  keywords: ['Sejed Trabelsi', 'Full Stack Developer', 'Node.js', 'Next.js', 'Tunisia', 'Web Developer', 'Discord Bot', 'React', 'sejed.dev'],
+  authors: [{ name: 'Sejed Trabelsi', url: 'https://sejed.dev' }],
+  creator: 'Sejed Trabelsi',
+  metadataBase: new URL('https://sejed.dev'),
   openGraph: {
     title: 'Sejed Trabelsi — Full Stack Developer',
-    description: 'Full Stack Developer from Tunisia with 6+ years of experience.',
+    description: 'Full Stack Developer from Tunisia. 6+ years of experience building scalable Discord bots (2.4M+ users), Next.js web apps, and automation systems.',
+    url: 'https://sejed.dev',
+    siteName: 'sejed.dev',
     type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/og-preview.png',
+        width: 1200,
+        height: 630,
+        alt: 'Sejed Trabelsi — Full Stack Developer Portfolio',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sejed Trabelsi — Full Stack Developer',
+    description: 'Full Stack Developer from Tunisia. 6+ years experience · Node.js · Next.js · Discord Bots · 2.4M+ Users.',
+    images: ['/og-preview.png'],
+    creator: '@sejeddev',
   },
   icons: {
     icon: '/code-icon.png',
     apple: '/code-icon.png',
+    shortcut: '/code-icon.png',
   },
 };
 
