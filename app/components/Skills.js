@@ -74,7 +74,9 @@ const categories = [
   },
 ];
 
-export default function Skills() {
+export default function Skills({ skills: customSkills }) {
+  const displaySkills = customSkills || categories;
+
   return (
     <section id="skills" className={`section ${styles.skills}`}>
       <div className={`orb orb-cyan ${styles.orb}`} />
@@ -96,7 +98,7 @@ export default function Skills() {
         </motion.div>
 
         <div className={styles.grid}>
-          {categories.map((cat, i) => (
+          {displaySkills.map((cat, i) => (
             <motion.div
               key={cat.title}
               className={`glass-card ${styles.card}`}

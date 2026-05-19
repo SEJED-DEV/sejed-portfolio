@@ -33,12 +33,18 @@ const stats = [
   },
 ];
 
-export default function Stats() {
+export default function Stats({ stats: customStats }) {
+  const displayStats = customStats && customStats.length === 4 ? customStats.map((cs, idx) => ({
+    ...stats[idx],
+    value: cs.value,
+    label: cs.label,
+  })) : stats;
+
   return (
     <section className={styles.stats}>
       <div className="container">
         <div className={styles.grid}>
-          {stats.map((item, i) => (
+          {displayStats.map((item, i) => (
             <motion.div
               key={item.label}
               className={`glass-card ${styles.card}`}

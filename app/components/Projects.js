@@ -180,7 +180,8 @@ const tagColor = {
   purple: 'tag tag-purple',
 };
 
-export default function Projects() {
+export default function Projects({ projects: customProjects }) {
+  const displayProjects = customProjects || projects;
   const [filter, setFilter] = useState('all');
   const [techFilter, setTechFilter] = useState(null);
 
@@ -194,7 +195,7 @@ export default function Projects() {
     return () => window.removeEventListener('filter-projects', handleFilterTech);
   }, []);
 
-  const filtered = projects.filter(p => {
+  const filtered = displayProjects.filter(p => {
     const categoryMatch = filter === 'all' || p.category === filter;
     const techMatch = !techFilter || p.tags.some(tag => {
       const t1 = tag.toLowerCase();
@@ -221,6 +222,9 @@ export default function Projects() {
           <p className="section-subtitle">
             A selection of projects that showcase my range — from bots to full-stack apps.
           </p>
+          <div className={styles.openSourceBadge}>
+            <strong>🤝 Open Source:</strong> All GitHub repositories linked below are fully open for contributions and PRs!
+          </div>
           <div className="divider" />
         </motion.div>
 

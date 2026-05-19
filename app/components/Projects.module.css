@@ -10,6 +10,22 @@
   right: -150px;
 }
 
+.openSourceBadge {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-top: 16px;
+  display: inline-block;
+}
+
+.openSourceBadge strong {
+  font-weight: 700;
+  color: #fff;
+}
+
 .filters {
   display: flex;
   justify-content: space-between;

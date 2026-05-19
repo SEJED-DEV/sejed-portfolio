@@ -11,10 +11,13 @@ const titles = [
   'Problem Solver',
 ];
 
-export default function Hero() {
+export default function Hero({ personal = {} }) {
   const [titleIndex, setTitleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  const firstName = personal.firstName || "Sejed";
+  const bioShort = personal.bioShort || "Building high-performance automation engines, scalable Discord ecosystems, and interactive web experiences.";
 
   useEffect(() => {
     const current = titles[titleIndex];
@@ -65,7 +68,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.15 }}
         >
           Hi, I&apos;m{' '}
-          <span className="gradient-text">Sejed</span>
+          <span className="gradient-text">{firstName}</span>
         </motion.h1>
 
         <motion.div
@@ -84,8 +87,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45 }}
         >
-          17 years old with 6+ years of experience crafting performant, scalable applications.
-          From Discord bots to full-stack web apps — I turn ideas into code.
+          {bioShort}
         </motion.p>
 
         <motion.div

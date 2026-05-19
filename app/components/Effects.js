@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './Effects.module.css';
 
-export default function Effects() {
+export default function Effects({ fx = 'particles' }) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -80,6 +80,12 @@ export default function Effects() {
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
+    
+    if (fx === 'static') {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
+
     let animationFrameId;
     let particles = [];
     
@@ -91,15 +97,17 @@ export default function Effects() {
     window.addEventListener('resize', resizeCanvas, { passive: true });
 
     // Initialize particles
-    const particleCount = isMobile ? 25 : 60;
+    const isNebula = fx === 'nebulas';
+    const particleCount = isNebula ? (isMobile ? 3 : 5) : (isMobile ? 25 : 60);
+
     particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      size: Math.random() * 1.5 + 0.5,
-      speedX: (Math.random() - 0.5) * 0.04,
-      speedY: (Math.random() - 0.5) * 0.04,
-      alpha: Math.random() * 0.4 + 0.2,
-      pulse: Math.random() * 0.001 + 0.0003,
+      size: isNebula ? Math.random() * 150 + 100 : Math.random() * 1.5 + 0.5,
+      speedX: isNebula ? (Math.random() - 0.5) * 0.1 : (Math.random() - 0.5) * 0.04,
+      speedY: isNebula ? (Math.random() - 0.5) * 0.1 : (Math.random() - 0.5) * 0.04,
+      alpha: isNebula ? Math.random() * 0.1 + 0.05 : Math.random() * 0.4 + 0.2,
+      pulse: isNebula ? 0 : Math.random() * 0.001 + 0.0003,
       pulseDirection: Math.random() > 0.5 ? 1 : -1,
     }));
 
@@ -113,17 +121,19 @@ export default function Effects() {
         p.x += p.speedX;
         p.y += p.speedY;
 
-        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+        if (p.x < -p.size || p.x > canvas.width + p.size) p.speedX *= -1;
+        if (p.y < -p.size || p.y > canvas.height + p.size) p.speedY *= -1;
 
-        p.alpha += p.pulse * p.pulseDirection;
-        if (p.alpha > 0.7 || p.alpha < 0.2) p.pulseDirection *= -1;
+        if (!isNebula) {
+          p.alpha += p.pulse * p.pulseDirection;
+          if (p.alpha > 0.7 || p.alpha < 0.2) p.pulseDirection *= -1;
+        }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${baseColor}, ${p.alpha})`;
-        ctx.shadowBlur = p.size * 2;
-        ctx.shadowColor = `rgba(${baseColor}, 0.5)`;
+        ctx.shadowBlur = isNebula ? p.size * 0.8 : p.size * 2;
+        ctx.shadowColor = `rgba(${baseColor}, ${isNebula ? 0.2 : 0.5})`;
         ctx.fill();
       });
 

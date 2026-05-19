@@ -1,0 +1,455 @@
+.triggerBtn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 999;
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  backdrop-filter: blur(15px);
+  padding: 12px 20px;
+  border-radius: 99px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15), 0 0 20px rgba(99, 102, 241, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:global(:root.light) .triggerBtn {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: var(--accent-indigo);
+}
+
+.triggerBtn:hover {
+  transform: scale(1.05) translateY(-2px);
+  background: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 12px 35px rgba(99, 102, 241, 0.25), 0 0 30px rgba(99, 102, 241, 0.4);
+}
+
+.triggerPulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  position: relative;
+}
+
+.triggerPulse::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid #10b981;
+  animation: pulseRing 1.8s infinite;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.triggerIcon {
+  font-size: 1.1rem;
+  animation: spinSlow 6s linear infinite;
+}
+
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+
+/* Backdrop */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9998;
+  background: rgba(3, 3, 10, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+/* Panel Frame */
+.panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 420px;
+  max-width: 100%;
+  z-index: 9999;
+  background: rgba(10, 10, 20, 0.85) !important;
+  backdrop-filter: blur(25px);
+  border-right: 1px solid var(--border);
+  border-radius: 0 24px 24px 0 !important;
+  padding: 30px !important;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 20px 0 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 102, 241, 0.1);
+}
+
+:global(:root.light) .panel {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 20px 0 50px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.headerInfo h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.headerInfo p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+/* Tabs */
+.tabNav {
+  display: flex;
+  gap: 6px;
+  background: var(--bg-card);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.tabBtn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 8px 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tabActive {
+  background: var(--bg-card-hover);
+  color: var(--accent-indigo);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Styling */
+.tabContent {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.tabContent::-webkit-scrollbar {
+  width: 5px;
+}
+
+.tabContent::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputField label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.subLabel {
+  font-size: 0.72rem !important;
+  margin-top: 4px;
+}
+
+.inputField input, .inputField textarea {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+.inputField input:focus, .inputField textarea:focus {
+  border-color: var(--accent-indigo);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.15);
+  background: var(--bg-card-hover);
+}
+
+.statGridItem {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.statGridItem h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-indigo);
+}
+
+/* Export Section */
+.exportSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.successBox {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.successBox span {
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.successBox p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.instructionCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.instructionCard h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.instructionCard ol {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.instructionCard code {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.76rem;
+  color: #e2e8f0;
+}
+
+:global(:root.light) .instructionCard code {
+  background: rgba(0, 0, 0, 0.08);
+  color: #334155;
+}
+
+.downloadBtn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.downloadBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.studioLinkBtn {
+  background: var(--gradient-indigo);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: #ffffff;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15);
+  display: block;
+}
+
+.studioLinkBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.3);
+}
+
+@media (max-width: 480px) {
+  .panel {
+    width: 100%;
+    border-radius: 0 !important;
+  }
+}
+
+/* ===================== LIGHT THEME OVERRIDES ===================== */
+
+:global(:root.light) .triggerBtn {
+  color: var(--accent-indigo);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.1);
+}
+
+:global(:root.light) .backdrop {
+  background: rgba(200, 210, 230, 0.5);
+}
+
+:global(:root.light) .tabNav {
+  background: rgba(241, 245, 249, 0.9);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+:global(:root.light) .tabBtn {
+  color: #475569;
+}
+
+:global(:root.light) .tabActive {
+  background: #ffffff;
+  color: var(--accent-indigo);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+:global(:root.light) .inputField input,
+:global(:root.light) .inputField textarea {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #1e293b;
+}
+
+:global(:root.light) .inputField input:focus,
+:global(:root.light) .inputField textarea:focus {
+  border-color: var(--accent-indigo);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.1);
+  background: #f8faff;
+}
+
+:global(:root.light) .statGridItem {
+  background: #f8fafc;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+:global(:root.light) .successBox {
+  background: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.18);
+}
+
+:global(:root.light) .successBox p {
+  color: #475569;
+}
+
+:global(:root.light) .instructionCard {
+  background: #f8fafc;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+:global(:root.light) .instructionCard h4 {
+  color: #1e293b;
+}
+
+:global(:root.light) .instructionCard ol {
+  color: #475569;
+}
+
+:global(:root.light) .downloadBtn {
+  background: #f1f5f9;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #1e293b;
+}
+
+:global(:root.light) .downloadBtn:hover {
+  background: #e2e8f0;
+}
+
+:global(:root.light) .divider {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+:global(:root.light) .headerInfo p {
+  color: #64748b;
+}
+
+:global(:root.light) .closeBtn {
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #475569;
+}
+
+:global(:root.light) .tabContent::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+

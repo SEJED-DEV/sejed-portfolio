@@ -60,27 +60,35 @@ const socials = [
   },
 ];
 
-export default function Contact() {
+export default function Contact({ socials: customSocials }) {
   const [toastMsg, setToastMsg] = useState('');
   const [showToast, setShowToast] = useState(false);
 
+  const displaySocials = customSocials && customSocials.length === 5 ? customSocials.map((cs, idx) => ({
+    ...socials[idx],
+    value: cs.value,
+    href: cs.href,
+  })) : socials;
+
+  const discordUsername = displaySocials.find(s => s.name === 'Discord')?.value.split(' ')[0] || 'sejed.dev';
+
   useEffect(() => {
     const handleCustomToast = () => {
-      setToastMsg('📋 Discord Username Copied (sejed.dev)!');
+      setToastMsg(`📋 Discord Username Copied (${discordUsername})!`);
       setShowToast(true);
       setTimeout(() => setShowToast(false), 3000);
     };
 
     window.addEventListener('show-discord-toast', handleCustomToast);
     return () => window.removeEventListener('show-discord-toast', handleCustomToast);
-  }, []);
+  }, [discordUsername]);
 
   const handleSocialClick = (e, social) => {
     if (social.name === 'Discord') {
       e.preventDefault();
       // Copy username to clipboard
-      navigator.clipboard.writeText('sejed.dev');
-      setToastMsg('📋 Discord Username Copied (sejed.dev)!');
+      navigator.clipboard.writeText(discordUsername);
+      setToastMsg(`📋 Discord Username Copied (${discordUsername})!`);
       setShowToast(true);
       setTimeout(() => setShowToast(false), 3000);
     }
@@ -109,7 +117,7 @@ export default function Contact() {
           <div className="divider" />
 
           <div className={styles.grid}>
-            {socials.map((social, i) => {
+            {displaySocials.map((social, i) => {
               const isDiscord = social.name === 'Discord';
               return (
                 <motion.a

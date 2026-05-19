@@ -31,8 +31,30 @@ const timeline = [
   },
 ];
 
-export default function About() {
-  const [activeIndex, setActiveIndex] = useState(3); // Default to Lycée Pilote
+export default function About({ personal = {}, timeline: customTimeline }) {
+  const displayTimeline = customTimeline || timeline;
+  const [activeIndex, setActiveIndex] = useState(0); // Default to first timeline milestone
+
+  const firstName = personal.firstName || "Sejed";
+  const lastName = personal.lastName || "Trabelsi";
+  const fullName = `${firstName} ${lastName}`;
+  const locationStr = personal.location || "Mannouba, Tunisia";
+  
+  const storyParagraphs = personal.story || [
+    `I'm **${fullName}** — a full-stack developer from Tunisia who started coding at 11. What began as curiosity quickly turned into an obsession with building things that matter.`,
+    `Over the past 6+ years, I've gone deep into **Node.js** and **Next.js**, building everything from high-performance Discord bots serving thousands of users to full-stack web applications with complex backends.`,
+    `I believe in clean architecture, scalable systems, and shipping fast. Currently studying while continuing to push the boundaries of what I can build.`
+  ];
+
+  const renderParagraph = (text) => {
+    const boldParts = text.split(/(\*\*.*?\*\*)/g);
+    return boldParts.map((bp, bidx) => {
+      if (bp.startsWith('**') && bp.endsWith('**')) {
+        return <strong key={bidx}>{bp.slice(2, -2)}</strong>;
+      }
+      return bp;
+    });
+  };
 
   return (
     <section id="about" className={`section ${styles.about}`}>
@@ -59,19 +81,9 @@ export default function About() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, delay: 0.1 }}
           >
-            <p>
-              I&apos;m <strong>Sejed Trabelsi</strong> — a full-stack developer from Tunisia who started coding at 11.
-              What began as curiosity quickly turned into an obsession with building things that matter.
-            </p>
-            <p>
-              Over the past 6+ years, I&apos;ve gone deep into <strong>Node.js</strong> and <strong>Next.js</strong>,
-              building everything from high-performance Discord bots serving thousands of users to full-stack
-              web applications with complex backends.
-            </p>
-            <p>
-              I believe in clean architecture, scalable systems, and shipping fast. Currently studying while
-              continuing to push the boundaries of what I can build.
-            </p>
+            {storyParagraphs.map((para, pidx) => (
+              <p key={pidx}>{renderParagraph(para)}</p>
+            ))}
 
             <div className={styles.highlights}>
               <div className={`glass-card ${styles.highlightCard}`}>
@@ -79,8 +91,8 @@ export default function About() {
                   <Flag country="TN" size="lg" />
                 </div>
                 <div>
-                  <strong>Based in Tunisia</strong>
-                  <span>Mannouba</span>
+                  <strong>Based in {locationStr.split(',')[1]?.trim() || "Tunisia"}</strong>
+                  <span>{locationStr.split(',')[0]?.trim() || "Mannouba"}</span>
                 </div>
               </div>
               <div className={`glass-card ${styles.highlightCard}`}>
@@ -110,7 +122,7 @@ export default function About() {
             <h3 className={styles.timelineTitle}>My Journey <span className={styles.timelineHint}>(Click nodes to explore)</span></h3>
             
             <div className={styles.timelineTrack}>
-              {timeline.map((item, i) => {
+              {displayTimeline.map((item, i) => {
                 const isActive = activeIndex === i;
                 return (
                   <button
@@ -144,10 +156,10 @@ export default function About() {
                   transition={{ duration: 0.25, ease: 'easeOut' }}
                 >
                   <div className={styles.detailHeader}>
-                    <span className={styles.detailEmoji}>{timeline[activeIndex].emoji}</span>
-                    <h4 className={styles.detailTitle}>{timeline[activeIndex].label}</h4>
+                    <span className={styles.detailEmoji}>{displayTimeline[activeIndex]?.emoji || '📍'}</span>
+                    <h4 className={styles.detailTitle}>{displayTimeline[activeIndex]?.label || 'Milestone Details'}</h4>
                   </div>
-                  <p className={styles.detailDesc}>{timeline[activeIndex].desc}</p>
+                  <p className={styles.detailDesc}>{displayTimeline[activeIndex]?.desc || 'Select a milestone to view detailed story information.'}</p>
                 </motion.div>
               </AnimatePresence>
             </div>

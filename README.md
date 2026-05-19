@@ -1,13 +1,16 @@
 # 🌌 sejed-portfolio — Cosmic Developer Portfolio (v2.0)
 
+![License](https://img.shields.io/badge/License-MIT-green)
+
 A state-of-the-art, premium developer portfolio website designed for full-stack developers, software engineers, and creators. Featuring an immersive cosmic dark-themed, glassmorphic UI built using **Next.js**, **React**, **Framer Motion**, and **Vanilla CSS**.
 
-This website is fully open-source and customizable. Show off your projects, tech arsenal, professional journey, and contact information with fluid animations and premium typography.
+This website is fully open-source and customizable via an advanced real-time Studio interface. Show off your projects, tech arsenal, professional journey, and contact information with fluid animations and premium typography.
 
 ---
 
 ## ✨ Cutting-Edge Features
 
+- **🎨 Advanced Portfolio Studio (`/customize`) [BETA]:** A full-screen split-screen dashboard to dynamically construct your custom identity, configure Discord bot profiles, change fonts, and toggle physics engines in real-time before exporting your configuration!
 - **🛸 Cosmic Dark Design:** A curated dark color scheme utilizing deep space purples, sleek indigos, and glowing cyans.
 - **🖱️ PC Right-Click Custom Menu:** A gorgeous global Right-Click context menu for desktop users featuring smooth spring scales, target scrolling, theme indicators, and clipboard actions.
 - **🤖 Discord Bot Simulator Playground:** An immersive simulated Discord Chat Console where visitors click presets or type slash commands (`/help`, `/status`, `/cortex`, `/palestine`) and watch custom rich embed cards render dynamically with typing state bubbles.
@@ -90,21 +93,20 @@ sejed-portfolio/
 
 ---
 
-## ✏️ Customization
+## ✏️ Customization (No-Code Studio)
 
-### Updating Social Media & Contacts
-Modify the `socials` array in `app/components/Contact.js`:
-```javascript
-const socials = [
-  {
-    name: 'Email',
-    value: 'your.email@gmail.com',
-    icon: <svg>...</svg>,
-    color: '#6366f1'
-  },
-  // ...
-];
-```
+This portfolio is entirely driven by a centralized configuration matrix. 
+1. Open the project in your browser.
+2. Click the **Customize Portfolio** button in the bottom left, or navigate directly to `http://localhost:3000/customize`.
+3. Use the **Split-Screen Studio** to dynamically update your name, stats, timeline, projects, fonts, and Discord simulator configurations!
+4. Click **Download config.json** and replace the contents of `app/config/defaultConfig.js` with your exported configuration!
+
+---
+
+## 🤝 Contributions
+
+**All components, profile customizations, and GitHub projects are completely Open for Contribution!** 
+We welcome Pull Requests for new interactive widgets, refined animations, or optimized systems. If you have an idea, fork the repository, make your changes, and open a PR.
 
 ---
 

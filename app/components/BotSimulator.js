@@ -11,20 +11,38 @@ const presetCommands = [
   { cmd: '/palestine', desc: 'Get solidarity actions' },
 ];
 
-export default function BotSimulator() {
+export default function BotSimulator({ discordBot: customBot }) {
+  const botName = customBot?.botName || 'CortexBot';
+  const botAvatar = customBot?.botAvatar || '🤖';
+  const welcomeMessage = customBot?.welcomeMessage || 'Hello! I am **CortexBot**, a modular Discord automation engine designed by **Sejed**. Type `/` or click one of the preset commands below to see what I can do!';
+
   const [messages, setMessages] = useState([
     {
       id: 'init-1',
-      user: 'CortexBot',
-      avatar: '🤖',
+      user: botName,
+      avatar: botAvatar,
       isBot: true,
       timestamp: 'Today at 12:00 PM',
-      content: 'Hello! I am **CortexBot**, a modular Discord automation engine designed by **Sejed**. Type `/` or click one of the preset commands below to see what I can do!',
+      content: welcomeMessage,
     }
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const scrollContainerRef = useRef(null);
+
+  // Sync with customized properties reactively during live customizations
+  useEffect(() => {
+    setMessages([
+      {
+        id: 'init-1',
+        user: botName,
+        avatar: botAvatar,
+        isBot: true,
+        timestamp: 'Today at 12:00 PM',
+        content: welcomeMessage,
+      }
+    ]);
+  }, [botName, botAvatar, welcomeMessage]);
 
   // Safely scroll ONLY the inner messages container (0 global page scroll!)
   useEffect(() => {
@@ -132,8 +150,8 @@ export default function BotSimulator() {
         ...prev,
         {
           id: 'bot-' + Date.now(),
-          user: 'CortexBot',
-          avatar: '🤖',
+          user: botName,
+          avatar: botAvatar,
           isBot: true,
           timestamp: formattedTime,
           embed,
@@ -271,10 +289,10 @@ export default function BotSimulator() {
 
                 {isTyping && (
                   <div className={styles.messageRow}>
-                    <span className={styles.avatar}>🤖</span>
+                    <span className={styles.avatar}>{botAvatar}</span>
                     <div className={styles.messageContent}>
                       <div className={styles.messageMeta}>
-                        <span className={styles.username}>CortexBot</span>
+                        <span className={styles.username}>{botName}</span>
                         <span className={styles.botBadge}>BOT</span>
                         <span className={styles.typingText}>is typing...</span>
                       </div>

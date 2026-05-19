@@ -3,7 +3,15 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
 
-const navLinks = [
+const essentialLinks = [
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: '🇵🇸 Palestine', href: '#palestine' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const allLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
@@ -39,7 +47,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const sections = [];
-    navLinks.forEach(l => {
+    allLinks.forEach(l => {
       try {
         const el = document.querySelector(l.href);
         if (el) sections.push(el);
@@ -86,7 +94,7 @@ export default function Navbar() {
           </a>
 
           <div className={styles.links}>
-            {navLinks.map(link => (
+            {essentialLinks.map(link => (
               <a
                 key={link.href}
                 href={link.href}
@@ -98,6 +106,13 @@ export default function Navbar() {
                 )}
               </a>
             ))}
+            <a 
+              href="/customize" 
+              className={`${styles.link} ${active === '/customize' ? styles.activeLink : ''}`}
+              style={{ marginLeft: '12px', color: '#8b5cf6' }}
+            >
+              ✨ Customize Portfolio [BETA]
+            </a>
           </div>
 
           <div className={styles.navRight}>
@@ -138,7 +153,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
           >
-            {navLinks.map(link => (
+            {allLinks.map(link => (
               <a
                 key={link.href}
                 href={link.href}
@@ -148,6 +163,26 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <div style={{ height: '1px', background: 'var(--border)', margin: '8px 0' }} />
+            <a
+              href="/customize"
+              className={styles.mobileLink}
+              onClick={() => setMobileOpen(false)}
+              style={{ color: '#8b5cf6', fontWeight: 600 }}
+            >
+              ✨ Customize Portfolio
+              <span style={{
+                background: 'rgba(139,92,246,0.15)',
+                border: '1px solid rgba(139,92,246,0.3)',
+                color: '#8b5cf6',
+                fontSize: '0.55rem',
+                fontWeight: 800,
+                padding: '1px 5px',
+                borderRadius: '4px',
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase'
+              }}>BETA</span>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
