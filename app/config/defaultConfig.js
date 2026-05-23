@@ -135,7 +135,7 @@ export const defaultConfig = {
     },
     {
       title: 'Cortex Core',
-      description: 'The official open-source core framework powering the Cortex Discord ecosystem. A highly scalable, modular bot engine with built-in command handlers, events manager, and seamless AI integrations.',
+      description: 'An open-source core framework used to power the Cortex Discord ecosystem. A highly scalable, modular bot engine with built-in command handlers, events manager, and seamless AI integrations.',
       tags: ['Node.js', 'Discord.js', 'Open Source', 'Framework'],
       color: 'indigo',
       emoji: '🤖',
