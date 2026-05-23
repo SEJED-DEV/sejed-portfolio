@@ -134,6 +134,16 @@ export const defaultConfig = {
       live: 'https://cortex.cortexhq.net'
     },
     {
+      title: 'Cortex Core',
+      description: 'The official open-source core framework powering the Cortex Discord ecosystem. A highly scalable, modular bot engine with built-in command handlers, events manager, and seamless AI integrations.',
+      tags: ['Node.js', 'Discord.js', 'Open Source', 'Framework'],
+      color: 'indigo',
+      emoji: '🤖',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/cortex-core',
+      live: null
+    },
+    {
       title: 'Cortex Modmail',
       description: 'A dedicated modmail system companion for Cortex. Features session persistence, automated transcripts, staff assignment, and inline attachment rendering.',
       tags: ['Node.js', 'Discord.js', 'SQLite'],
