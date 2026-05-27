@@ -8,6 +8,7 @@ export default function ContextMenu() {
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const menuRef = useRef(null);
+  const firstItemRef = useRef(null);
 
   useEffect(() => {
     const handleContextMenu = (e) => {
@@ -42,6 +43,24 @@ export default function ContextMenu() {
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') setVisible(false);
+
+      if (visible && e.key === 'Tab') {
+        const focusableElements = menuRef.current.querySelectorAll('button');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) { // Shift + Tab
+          if (document.activeElement === firstElement) {
+            lastElement.focus();
+            e.preventDefault();
+          }
+        } else { // Tab
+          if (document.activeElement === lastElement) {
+            firstElement.focus();
+            e.preventDefault();
+          }
+        }
+      }
     };
 
     window.addEventListener('contextmenu', handleContextMenu);
@@ -53,7 +72,13 @@ export default function ContextMenu() {
       window.removeEventListener('click', handleClickOutside);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [visible]);
+
+  useEffect(() => {
+    if (visible && firstItemRef.current) {
+      firstItemRef.current.focus();
+    }
+  }, [visible]);
 
   const handleScrollTo = (id) => {
     const el = document.getElementById(id);
@@ -85,7 +110,11 @@ export default function ContextMenu() {
           </div>
           <div className={styles.divider} />
           
-          <button className={styles.item} onClick={() => handleScrollTo('home')}>
+          <button
+            ref={firstItemRef}
+            className={styles.item}
+            onClick={() => handleScrollTo('home')}
+          >
             <span>🏠</span> Scroll to Top
           </button>
           <button className={styles.item} onClick={() => handleScrollTo('about')}>

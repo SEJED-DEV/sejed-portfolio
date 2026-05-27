@@ -70,27 +70,42 @@ export default function Contact({ socials: customSocials }) {
     href: cs.href,
   })) : socials;
 
-  const discordUsername = displaySocials.find(s => s.name === 'Discord')?.value.split(' ')[0] || 'sejed.dev';
+  const discordSocial = displaySocials.find(s => s.name === 'Discord');
+  const discordUsername = discordSocial?.value.includes('(')
+    ? discordSocial.value.split('(')[0].trim()
+    : (discordSocial?.value || 'sejed.dev');
 
   useEffect(() => {
+    let timeoutId;
     const handleCustomToast = () => {
       setToastMsg(`📋 Discord Username Copied (${discordUsername})!`);
       setShowToast(true);
-      setTimeout(() => setShowToast(false), 3000);
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => setShowToast(false), 3000);
     };
 
     window.addEventListener('show-discord-toast', handleCustomToast);
-    return () => window.removeEventListener('show-discord-toast', handleCustomToast);
+    return () => {
+      window.removeEventListener('show-discord-toast', handleCustomToast);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [discordUsername]);
 
-  const handleSocialClick = (e, social) => {
+  const handleSocialClick = async (e, social) => {
     if (social.name === 'Discord') {
       e.preventDefault();
-      // Copy username to clipboard
-      navigator.clipboard.writeText(discordUsername);
-      setToastMsg(`📋 Discord Username Copied (${discordUsername})!`);
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 3000);
+      try {
+        // Copy username to clipboard
+        await navigator.clipboard.writeText(discordUsername);
+        setToastMsg(`📋 Discord Username Copied (${discordUsername})!`);
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 3000);
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+        setToastMsg('❌ Failed to copy to clipboard');
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 3000);
+      }
     }
   };
 

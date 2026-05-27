@@ -14,6 +14,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Effects from './components/Effects';
 import ContextMenu from './components/ContextMenu';
+import ErrorBoundary from './components/ErrorBoundary';
 import { defaultConfig } from './config/defaultConfig';
 
 export default function Home() {
@@ -33,21 +34,47 @@ export default function Home() {
       <ContextMenu />
       <Navbar />
       <main>
-        <Hero personal={config.personal} />
-        <About personal={config.personal} timeline={config.timeline} />
-        <Stats stats={config.stats} />
-        <Skills skills={config.skills} />
+        <ErrorBoundary>
+          <Hero personal={config.personal} />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <About personal={config.personal} timeline={config.timeline} />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Stats stats={config.stats} />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Skills skills={config.skills} />
+        </ErrorBoundary>
         
-        {config.personal.showPalestine && <Palestine />}
+        {config.personal.showPalestine && (
+          <ErrorBoundary>
+            <Palestine />
+          </ErrorBoundary>
+        )}
         
-        <Projects />
+        <ErrorBoundary>
+          <Projects />
+        </ErrorBoundary>
         
-        {config.personal.showSimulator && <BotSimulator discordBot={config.discordBot} />}
+        {config.personal.showSimulator && (
+          <ErrorBoundary>
+            <BotSimulator discordBot={config.discordBot} />
+          </ErrorBoundary>
+        )}
         
-        {config.personal.showTestimonials && <Testimonials />}
+        {config.personal.showTestimonials && (
+          <ErrorBoundary>
+            <Testimonials />
+          </ErrorBoundary>
+        )}
         
-        <Faq />
-        <Contact socials={config.socials} />
+        <ErrorBoundary>
+          <Faq />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Contact socials={config.socials} />
+        </ErrorBoundary>
       </main>
       <Footer personal={config.personal} />
     </div>

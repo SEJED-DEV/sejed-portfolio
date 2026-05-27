@@ -246,7 +246,12 @@ export default function BotSimulator({ discordBot: customBot }) {
 
             {/* Main Chat Flow */}
             <div className={styles.chatArea}>
-              <div ref={scrollContainerRef} className={styles.messagesScroll}>
+              <div
+                ref={scrollContainerRef}
+                className={styles.messagesScroll}
+                aria-live="polite"
+                role="log"
+              >
                 {messages.map((msg) => (
                   <div key={msg.id} className={styles.messageRow}>
                     <span className={styles.avatar}>{msg.avatar}</span>
