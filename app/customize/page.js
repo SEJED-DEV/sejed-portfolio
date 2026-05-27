@@ -8,6 +8,23 @@ import { defaultConfig } from '../config/defaultConfig';
 export default function CustomizeStudio() {
   const [config, setConfig] = useState(defaultConfig);
   const [activeCategory, setActiveCategory] = useState('theme');
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  // Validation helpers
+  const validateUrl = (url) => {
+    if (!url) return true;
+    try {
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  const validateYear = (year) => {
+    return /^[0-9\s\-\.]{4,20}$/.test(year);
+  };
 
   // Input Handlers
   const updatePersonal = (key, val) => {
@@ -24,7 +41,11 @@ export default function CustomizeStudio() {
     }));
   };
 
-  const handleDownloadConfig = () => {
+  const handleDownloadConfig = async () => {
+    setIsDownloading(true);
+    // Simulate brief processing for UX feedback
+    await new Promise(resolve => setTimeout(resolve, 800));
+
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(config, null, 2));
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute("href", dataStr);
@@ -32,6 +53,7 @@ export default function CustomizeStudio() {
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
+    setIsDownloading(false);
   };
 
   const handleReset = () => {
@@ -108,8 +130,12 @@ export default function CustomizeStudio() {
           <button className={styles.resetBtn} onClick={handleReset}>
             🔄 Reset Defaults
           </button>
-          <button className={styles.exportBtn} onClick={handleDownloadConfig}>
-            📥 Download config.json
+          <button
+            className={styles.exportBtn}
+            onClick={handleDownloadConfig}
+            disabled={isDownloading}
+          >
+            {isDownloading ? '⏳ Processing...' : '📥 Download config.json'}
           </button>
         </div>
       </header>
@@ -270,6 +296,7 @@ export default function CustomizeStudio() {
                   <label>First Name</label>
                   <input 
                     type="text" 
+                    maxLength={20}
                     value={config.personal.firstName}
                     onChange={(e) => updatePersonal('firstName', e.target.value)}
                   />
@@ -278,6 +305,7 @@ export default function CustomizeStudio() {
                   <label>Last Name</label>
                   <input 
                     type="text" 
+                    maxLength={20}
                     value={config.personal.lastName}
                     onChange={(e) => updatePersonal('lastName', e.target.value)}
                   />
@@ -286,6 +314,7 @@ export default function CustomizeStudio() {
                   <label>Professional Sub-headline Role</label>
                   <input 
                     type="text" 
+                    maxLength={50}
                     value={config.personal.role}
                     onChange={(e) => updatePersonal('role', e.target.value)}
                   />
@@ -294,6 +323,7 @@ export default function CustomizeStudio() {
                   <label>Primary Location (e.g. City, Country)</label>
                   <input 
                     type="text" 
+                    maxLength={50}
                     value={config.personal.location}
                     onChange={(e) => updatePersonal('location', e.target.value)}
                   />
@@ -302,9 +332,11 @@ export default function CustomizeStudio() {
                   <label>Brief Headline Intro (Hero Section)</label>
                   <textarea 
                     rows={3}
+                    maxLength={200}
                     value={config.personal.bioShort}
                     onChange={(e) => updatePersonal('bioShort', e.target.value)}
                   />
+                  <small className={styles.charCount}>{config.personal.bioShort.length}/200</small>
                 </div>
               </div>
             )}
@@ -390,9 +422,10 @@ export default function CustomizeStudio() {
                       <button className={styles.deleteBtn} onClick={() => removeTimelineItem(idx)}>Delete</button>
                     </div>
                     <div className={styles.grid2}>
-                      <div className={styles.inputField}>
+                      <div className={`${styles.inputField} ${!validateYear(t.year) ? styles.errorInput : ''}`}>
                         <label>Year Range</label>
                         <input type="text" value={t.year} onChange={(e) => updateTimelineItem(idx, 'year', e.target.value)} />
+                        {!validateYear(t.year) && <small className={styles.errorText}>Invalid format</small>}
                       </div>
                       <div className={styles.inputField}>
                         <label>Emoji Icon</label>
@@ -443,13 +476,15 @@ export default function CustomizeStudio() {
                       <label>Detailed Description</label>
                       <textarea rows={3} value={p.description} onChange={(e) => updateProjectItem(idx, 'description', e.target.value)} />
                     </div>
-                    <div className={styles.inputField}>
+                    <div className={`${styles.inputField} ${p.github && !validateUrl(p.github) ? styles.errorInput : ''}`}>
                       <label>Repository (GitHub Link)</label>
                       <input type="text" value={p.github || ''} onChange={(e) => updateProjectItem(idx, 'github', e.target.value)} />
+                      {p.github && !validateUrl(p.github) && <small className={styles.errorText}>Invalid URL</small>}
                     </div>
-                    <div className={styles.inputField}>
+                    <div className={`${styles.inputField} ${p.live && !validateUrl(p.live) ? styles.errorInput : ''}`}>
                       <label>Live URL Preview Link</label>
                       <input type="text" value={p.live || ''} onChange={(e) => updateProjectItem(idx, 'live', e.target.value)} />
+                      {p.live && !validateUrl(p.live) && <small className={styles.errorText}>Invalid URL</small>}
                     </div>
                   </div>
                 ))}
