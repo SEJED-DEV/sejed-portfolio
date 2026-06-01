@@ -162,6 +162,178 @@ export const defaultConfig = {
       category: 'bot',
       github: null,
       live: 'https://quran.cortexhq.net'
+    },
+    {
+      title: 'Vortex',
+      description: 'A state-of-the-art Discord bot that automates server architecture through interactive AI-driven dialogues. Built with TypeScript for type safety and reliability.',
+      tags: ['TypeScript', 'Discord.js', 'AI'],
+      color: 'purple',
+      emoji: '🌀',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/vortex',
+      live: null
+    },
+    {
+      title: 'Nova ERLC Manager',
+      description: 'A premium Discord bot for ER:LC Private Servers with advanced session management, staff tracking, automated vote systems, and live server dashboards via PRC API.',
+      tags: ['JavaScript', 'Discord.js', 'PRC API'],
+      color: 'indigo',
+      emoji: '🌟',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/Nova-ERLC-Manager',
+      live: null
+    },
+    {
+      title: 'Vanguard',
+      description: 'Industrial-grade moderation solution for Discord. Features custom SQLite caching layer and ensures user privacy through restricted global logging.',
+      tags: ['JavaScript', 'Discord.js', 'SQLite'],
+      color: 'cyan',
+      emoji: '🛡️',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/Vanguard-discord-bot',
+      live: null
+    },
+    {
+      title: 'Pickle Infra',
+      description: 'The definitive Discord utility for Roblox sellers. Professional ticketing, automated entries, and secure sales tracking built for maximum reliability.',
+      tags: ['JavaScript', 'Discord.js', 'Vercel'],
+      color: 'purple',
+      emoji: '🥒',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/pickle-infra',
+      live: 'https://pickle-infra.vercel.app'
+    },
+    {
+      title: 'ERLC Utility Bot',
+      description: 'Enterprise-grade Discord utility bot for ER:LC Private Servers. Modular architecture with local SQLite persistence and advanced ERLC API V2 optimizations.',
+      tags: ['JavaScript', 'Discord.js', 'SQLite', 'ERLC API'],
+      color: 'indigo',
+      emoji: '⚙️',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/ERLC-UTILITY-BOT',
+      live: null
+    },
+    {
+      title: 'Discord ModMail Bot',
+      description: 'Advanced Modmail infrastructure with session persistence, automated transcripts, and inline attachment rendering. Built with Python.',
+      tags: ['Python', 'Discord.py', 'Async'],
+      color: 'cyan',
+      emoji: '📬',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/Discord-ModMail-Bot',
+      live: null
+    },
+    {
+      title: 'OpenSyntax Academy',
+      description: 'An online learning platform built with TypeScript and Next.js. Features interactive coding lessons and structured curriculum for aspiring developers.',
+      tags: ['TypeScript', 'Next.js', 'Vercel'],
+      color: 'purple',
+      emoji: '📚',
+      category: 'web',
+      github: 'https://github.com/SEJED-DEV/opensyntax-academy',
+      live: 'https://opensyntax-academy.vercel.app/'
+    },
+    {
+      title: 'Red Crescent Platform',
+      description: 'A private social media platform built for the IFRC and ICRC (Red Cross/Red Crescent). Secure communication and collaboration for humanitarian workers.',
+      tags: ['Full Stack', 'Private', 'Humanitarian'],
+      color: 'indigo',
+      emoji: '🏥',
+      category: 'web',
+      github: null,
+      live: null,
+      isPrivate: true
+    },
+    {
+      title: 'CodeXTN',
+      description: 'A platform for aspiring coders — daily challenges, coding competitions, and project building. Users compete for rankings and earn recognition.',
+      tags: ['HTML', 'CSS', 'JavaScript'],
+      color: 'cyan',
+      emoji: '🏆',
+      category: 'web',
+      github: 'https://github.com/TSSEJED/CodeXTN',
+      live: null
+    },
+    {
+      title: 'Bots Studio',
+      description: 'A web dashboard for managing and monitoring Discord bots. Built with TypeScript and deployed on Vercel for maximum performance.',
+      tags: ['TypeScript', 'Next.js', 'Vercel'],
+      color: 'purple',
+      emoji: '🎛️',
+      category: 'web',
+      github: 'https://github.com/TSSEJED/bots-studio',
+      live: 'https://bots-studio.vercel.app'
+    },
+    {
+      title: 'SGL Audit Expertise',
+      description: 'A private corporate website designed for SGL Audit Expertise — a Tunisian auditing and accounting firm. Clean, corporate layout with optimized security.',
+      tags: ['HTML', 'CSS', 'Private'],
+      color: 'indigo',
+      emoji: '📊',
+      category: 'web',
+      github: null,
+      live: null,
+      isPrivate: true
+    },
+    {
+      title: 'DevRegistry',
+      description: 'A universal discovery platform where creators can submit ANY digital product - from npm packages to Discord bots and tools.',
+      tags: ['TypeScript', 'Next.js', 'Discovery'],
+      color: 'purple',
+      emoji: '📦',
+      category: 'web',
+      github: 'https://github.com/SEJED-DEV/DevRegistry',
+      live: null
+    },
+    {
+      title: 'Digital Akhi Bot',
+      description: 'A production-grade, secure Discord bot designed for Islamic communities. Featuring prayer times, Quran, and community moderation.',
+      tags: ['TypeScript', 'Discord.js', 'Islamic'],
+      color: 'indigo',
+      emoji: '🕌',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/digital-akhi-bot',
+      live: 'https://digital-akhi-bot.vercel.app/'
+    },
+    {
+      title: 'Nexus Transcripts',
+      description: 'A premium HTML transcript generation library for Discord channels with interactive components and sleek UI.',
+      tags: ['HTML', 'Discord.js', 'Library'],
+      color: 'cyan',
+      emoji: '📜',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/nexus-transcripts',
+      live: 'https://nexus-transcripts.pages.dev/'
+    },
+    {
+      title: 'Colorado State Roleplay',
+      description: 'A specialized Discord bot for managing Colorado State RP communities, featuring automated session tracking and staff tools.',
+      tags: ['JavaScript', 'Discord.js', 'Roleplay'],
+      color: 'purple',
+      emoji: '🏔️',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/Colorado-State-Roleplay',
+      live: null
+    },
+    {
+      title: 'Zone-TN',
+      description: 'A community-focused project for Tunisian developers and creators to collaborate and share resources.',
+      tags: ['Community', 'Tunisia', 'Resources'],
+      color: 'indigo',
+      emoji: '🇹🇳',
+      category: 'web',
+      github: 'https://github.com/SEJED-DEV/Zone-TN',
+      live: null
+    },
+    {
+      title: 'Develeport Repository',
+      description: 'The core repository for the Develeport ecosystem, housing essential tools and documentation for developers.',
+      tags: ['Core', 'Ecosystem', 'Documentation'],
+      color: 'cyan',
+      emoji: '🏗️',
+      category: 'web',
+      github: 'https://github.com/SEJED-DEV/The-Develeport-Repository',
+      live: null
     }
   ]
 };

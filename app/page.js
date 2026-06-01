@@ -15,10 +15,28 @@ import Footer from './components/Footer';
 import Effects from './components/Effects';
 import ContextMenu from './components/ContextMenu';
 import ErrorBoundary from './components/ErrorBoundary';
+import { useEffect } from 'react';
 import { defaultConfig } from './config/defaultConfig';
 
 export default function Home() {
   const [config, setConfig] = useState(defaultConfig);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const saved = localStorage.getItem('portfolio-config');
+    if (saved) {
+      try {
+        setConfig(JSON.parse(saved));
+      } catch (e) {
+        console.error("Failed to parse saved config", e);
+      }
+    }
+  }, []);
+
+  if (!mounted) {
+    return <div style={{ opacity: 0 }} />;
+  }
 
   const getFontFamily = (fontKey) => {
     if (fontKey === 'fira-code') return "'Fira Code', monospace";
