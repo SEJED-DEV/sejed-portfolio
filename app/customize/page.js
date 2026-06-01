@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './customize.module.css';
@@ -8,8 +8,34 @@ import { defaultConfig } from '../config/defaultConfig';
 export default function CustomizeStudio() {
   const [config, setConfig] = useState(defaultConfig);
   const [activeCategory, setActiveCategory] = useState('theme');
+  const [isMobile, setIsMobile] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    // Load from localstorage on mount
+    const saved = localStorage.getItem('portfolio-config');
+    if (saved) {
+      try {
+        setConfig(JSON.parse(saved));
+      } catch (e) {
+        console.error("Failed to parse saved config", e);
+      }
+    }
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Persist to localstorage
+  useEffect(() => {
+    localStorage.setItem('portfolio-config', JSON.stringify(config));
+  }, [config]);
 
   // Validation helpers
   const validateUrl = (url) => {
@@ -57,8 +83,9 @@ export default function CustomizeStudio() {
   };
 
   const handleReset = () => {
-    if (confirm("Are you sure you want to reset all custom fields to Sejed's default config?")) {
+    if (confirm("Are you sure you want to reset all custom fields to Sejed's default config? This will clear your saved changes.")) {
       setConfig(defaultConfig);
+      localStorage.removeItem('portfolio-config');
     }
   };
 
@@ -106,6 +133,19 @@ export default function CustomizeStudio() {
     setConfig(prev => ({ ...prev, projects: updated }));
   };
 
+  // Tooltip helper
+  const getCategoryName = (cat) => {
+    const names = {
+      theme: 'Theme & Typography',
+      personal: 'Bio & Story',
+      stats: 'Metrics Stats',
+      discord: 'Discord Console',
+      timeline: 'Journey Timeline',
+      projects: 'Projects Catalog'
+    };
+    return names[cat] || cat;
+  };
+
   // Font selections mapping helper
   const getFontFamily = (fontKey) => {
     if (fontKey === 'fira-code') return "'Fira Code', monospace";
@@ -115,27 +155,53 @@ export default function CustomizeStudio() {
 
   return (
     <div className={`${styles.studioContainer} theme-${config.personal.themeColor}`} style={{ fontFamily: getFontFamily(config.personal.themeFont) }}>
+      <AnimatePresence>
+        {isMobile && (
+          <motion.div
+            className={styles.mobileWarning}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className={`glass-card ${styles.warningCard}`}>
+              <span className={styles.warningIcon}>📱</span>
+              <h3>Studio Restricted</h3>
+              <p>The Portfolio Studio is a high-performance architectural workspace designed for desktop monitors. Please access this page using a PC or Tablet in landscape mode.</p>
+              <div className={styles.warningActions}>
+                <Link href="/" className="btn btn-primary">
+                  View Portfolio
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Studio Header Panel */}
       <header className={styles.studioHeader}>
         <div className={styles.headerLeft}>
           <Link href="/" className={styles.backBtn}>
-            ← Exit Studio
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Exit Studio
           </Link>
           <div className={styles.titleWrapper}>
-            <h2>🌌 Cosmic Portfolio <span className="gradient-text">Studio</span> <span className={styles.betaBadge}>BETA</span></h2>
-            <p>Advanced real-time split-screen builder ecosystem for developers</p>
+            <h2>🌌 Cosmic Portfolio <span className="gradient-text">Studio</span> <span className={styles.betaBadge}>PRO</span></h2>
+            <p>Advanced real-time architect ecosystem</p>
           </div>
         </div>
         <div className={styles.headerActions}>
+          <Link href="/changelog" className={styles.changelogLink}>
+            📜 Changelog
+          </Link>
           <button className={styles.resetBtn} onClick={handleReset}>
-            🔄 Reset Defaults
+            🔄 Reset
           </button>
           <button
             className={styles.exportBtn}
             onClick={handleDownloadConfig}
             disabled={isDownloading}
           >
-            {isDownloading ? '⏳ Processing...' : '📥 Download config.json'}
+            {isDownloading ? '⏳ Processing...' : '📥 Export config.json'}
           </button>
         </div>
       </header>
@@ -146,42 +212,59 @@ export default function CustomizeStudio() {
         <div className={styles.controlSidebar}>
           {/* Section Navigation Categories */}
           <nav className={styles.sideNav}>
-            <button 
-              className={`${styles.navBtn} ${activeCategory === 'theme' ? styles.navActive : ''}`}
-              onClick={() => setActiveCategory('theme')}
-            >
-              🎨 Theme & Typography
-            </button>
-            <button 
-              className={`${styles.navBtn} ${activeCategory === 'personal' ? styles.navActive : ''}`}
-              onClick={() => setActiveCategory('personal')}
-            >
-              👤 Bio & Story
-            </button>
-            <button 
-              className={`${styles.navBtn} ${activeCategory === 'stats' ? styles.navActive : ''}`}
-              onClick={() => setActiveCategory('stats')}
-            >
-              📈 Metrics Stats
-            </button>
-            <button 
-              className={`${styles.navBtn} ${activeCategory === 'discord' ? styles.navActive : ''}`}
-              onClick={() => setActiveCategory('discord')}
-            >
-              🤖 Discord Console Builder
-            </button>
-            <button 
-              className={`${styles.navBtn} ${activeCategory === 'timeline' ? styles.navActive : ''}`}
-              onClick={() => setActiveCategory('timeline')}
-            >
-              🏫 Journey Timeline
-            </button>
-            <button 
-              className={`${styles.navBtn} ${activeCategory === 'projects' ? styles.navActive : ''}`}
-              onClick={() => setActiveCategory('projects')}
-            >
-              🚀 Featured Projects
-            </button>
+            <div className={styles.navGroup}>
+              <span className={styles.navGroupTitle}>Visuals</span>
+              <button
+                className={`${styles.navBtn} ${activeCategory === 'theme' ? styles.navActive : ''}`}
+                onClick={() => setActiveCategory('theme')}
+                title={getCategoryName('theme')}
+              >
+                <span className={styles.navIcon}>🎨</span>
+              </button>
+            </div>
+
+            <div className={styles.navGroup}>
+              <span className={styles.navGroupTitle}>Identity</span>
+              <button
+                className={`${styles.navBtn} ${activeCategory === 'personal' ? styles.navActive : ''}`}
+                onClick={() => setActiveCategory('personal')}
+                title={getCategoryName('personal')}
+              >
+                <span className={styles.navIcon}>👤</span>
+              </button>
+              <button
+                className={`${styles.navBtn} ${activeCategory === 'stats' ? styles.navActive : ''}`}
+                onClick={() => setActiveCategory('stats')}
+                title={getCategoryName('stats')}
+              >
+                <span className={styles.navIcon}>📈</span>
+              </button>
+              <button
+                className={`${styles.navBtn} ${activeCategory === 'timeline' ? styles.navActive : ''}`}
+                onClick={() => setActiveCategory('timeline')}
+                title={getCategoryName('timeline')}
+              >
+                <span className={styles.navIcon}>🏫</span>
+              </button>
+            </div>
+
+            <div className={styles.navGroup}>
+              <span className={styles.navGroupTitle}>Content</span>
+              <button
+                className={`${styles.navBtn} ${activeCategory === 'discord' ? styles.navActive : ''}`}
+                onClick={() => setActiveCategory('discord')}
+                title={getCategoryName('discord')}
+              >
+                <span className={styles.navIcon}>🤖</span>
+              </button>
+              <button
+                className={`${styles.navBtn} ${activeCategory === 'projects' ? styles.navActive : ''}`}
+                onClick={() => setActiveCategory('projects')}
+                title={getCategoryName('projects')}
+              >
+                <span className={styles.navIcon}>🚀</span>
+              </button>
+            </div>
           </nav>
 
           {/* Form Content panel */}

@@ -176,6 +176,66 @@ const projects = [
     live: null,
     isPrivate: true,
   },
+  {
+    title: 'DevRegistry',
+    description: 'A universal discovery platform where creators can submit ANY digital product - from npm packages to Discord bots and tools.',
+    tags: ['TypeScript', 'Next.js', 'Discovery'],
+    color: 'purple',
+    emoji: '📦',
+    category: 'web',
+    github: 'https://github.com/SEJED-DEV/DevRegistry',
+    live: null,
+  },
+  {
+    title: 'Digital Akhi Bot',
+    description: 'A production-grade, secure Discord bot designed for Islamic communities. Featuring prayer times, Quran, and community moderation.',
+    tags: ['TypeScript', 'Discord.js', 'Islamic'],
+    color: 'indigo',
+    emoji: '🕌',
+    category: 'bot',
+    github: 'https://github.com/SEJED-DEV/digital-akhi-bot',
+    live: 'https://digital-akhi-bot.vercel.app/',
+  },
+  {
+    title: 'Nexus Transcripts',
+    description: 'A premium HTML transcript generation library for Discord channels with interactive components and sleek UI.',
+    tags: ['HTML', 'Discord.js', 'Library'],
+    color: 'cyan',
+    emoji: '📜',
+    category: 'bot',
+    github: 'https://github.com/SEJED-DEV/nexus-transcripts',
+    live: 'https://nexus-transcripts.pages.dev/',
+  },
+  {
+    title: 'Colorado State Roleplay',
+    description: 'A specialized Discord bot for managing Colorado State RP communities, featuring automated session tracking and staff tools.',
+    tags: ['JavaScript', 'Discord.js', 'Roleplay'],
+    color: 'purple',
+    emoji: '🏔️',
+    category: 'bot',
+    github: 'https://github.com/SEJED-DEV/Colorado-State-Roleplay',
+    live: null,
+  },
+  {
+    title: 'Zone-TN',
+    description: 'A community-focused project for Tunisian developers and creators to collaborate and share resources.',
+    tags: ['Community', 'Tunisia', 'Resources'],
+    color: 'indigo',
+    emoji: '🇹🇳',
+    category: 'web',
+    github: 'https://github.com/SEJED-DEV/Zone-TN',
+    live: null,
+  },
+  {
+    title: 'Develeport Repository',
+    description: 'The core repository for the Develeport ecosystem, housing essential tools and documentation for developers.',
+    tags: ['Core', 'Ecosystem', 'Documentation'],
+    color: 'cyan',
+    emoji: '🏗️',
+    category: 'web',
+    github: 'https://github.com/SEJED-DEV/The-Develeport-Repository',
+    live: null,
+  },
 ];
 
 const filters = [
@@ -225,7 +285,7 @@ export default function Projects({ projects: customProjects }) {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
         >
-          <p className="section-label">// featured work</p>
+          <p className="section-label">{'// featured work'}</p>
           <h2 className="section-title">
             Things I&apos;ve <span className="gradient-text">Built</span>
           </h2>

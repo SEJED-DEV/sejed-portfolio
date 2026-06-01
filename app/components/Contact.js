@@ -64,11 +64,11 @@ export default function Contact({ socials: customSocials }) {
   const [toastMsg, setToastMsg] = useState('');
   const [showToast, setShowToast] = useState(false);
 
-  const displaySocials = customSocials && customSocials.length === 5 ? customSocials.map((cs, idx) => ({
-    ...socials[idx],
-    value: cs.value,
-    href: cs.href,
-  })) : socials;
+  // Map custom socials by name to ensure icons/colors stay consistent
+  const displaySocials = customSocials ? socials.map(s => {
+    const custom = customSocials.find(cs => cs.name === s.name);
+    return custom ? { ...s, value: custom.value, href: custom.href } : s;
+  }) : socials;
 
   const discordSocial = displaySocials.find(s => s.name === 'Discord');
   const discordUsername = discordSocial?.value.includes('(')
@@ -121,7 +121,7 @@ export default function Contact({ socials: customSocials }) {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
         >
-          <p className="section-label">// get in touch</p>
+          <p className="section-label">{'// get in touch'}</p>
           <h2 className="section-title">
             Let&apos;s work <span className="gradient-text">together</span>
           </h2>

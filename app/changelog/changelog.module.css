@@ -1,0 +1,143 @@
+.changelogContainer {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 0%, rgba(20, 20, 35, 1) 0%, rgba(5, 5, 12, 1) 100%);
+  color: #fff;
+  padding-bottom: 80px;
+}
+
+.header {
+  padding: 80px 0 40px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 60px;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: #fff;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent-indigo), transparent);
+  margin-left: -20px;
+}
+
+.changeCard {
+  position: relative;
+}
+
+.versionBadge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.vNum {
+  font-family: 'Fira Code', monospace;
+  font-weight: 700;
+  color: var(--accent-indigo);
+  background: rgba(99, 102, 241, 0.1);
+  padding: 4px 12px;
+  border-radius: 99px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.vDate {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.latestTag {
+  background: #10b981;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.cardContent {
+  padding: 30px !important;
+}
+
+.cardContent h3 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.itemList li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.itemList li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-indigo);
+}
+
+.footer {
+  text-align: center;
+  margin-top: 80px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2.2rem;
+  }
+  .timeline::before {
+    display: none;
+  }
+}

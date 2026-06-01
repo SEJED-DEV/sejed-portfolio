@@ -65,6 +65,20 @@ const essays = [
     content: 'Tatreez is the traditional, detailed Palestinian art of cross-stitch embroidery. For centuries, Tatreez was much more than simple decorative sewing; it functioned as a sophisticated, non-verbal visual language. Every region in Palestine has its own distinct motifs, color palettes, and geometric patterns.\n\nBy reading the embroidery on a woman\'s dress, one could immediately identify her village of origin, her social status, and key events in her life. During times of conflict, women used Tatreez motifs to thread secret messages, document geographic lineages, and preserve their identity against systematic cultural erasure. Today, it remains a celebrated form of national art and resistance.',
     tag: 'National Art',
   },
+  {
+    id: 'keffiyeh-history',
+    title: 'The Keffiyeh: A Fabric of Resistance & Identity',
+    short: 'Tracing the journey of the black-and-white checkered scarf from rural origins to a global symbol of solidarity.',
+    content: 'The Keffiyeh, particularly the black-and-white checkered pattern, is perhaps the most recognizable symbol of Palestinian identity worldwide. Originally worn by farmers (fellahin) to protect against the sun and dust, it became a powerful political statement during the 1936 Arab Revolt against British colonial rule.\n\nEach pattern on the Keffiyeh carries deep meaning: the fishnet pattern represents the Palestinian connection to the Mediterranean Sea, the bold lines represent trade routes through the land, and the olive leaf pattern honors the resilience of the ancient groves. Today, wearing the Keffiyeh is a global gesture of solidarity, representing the persistent struggle for freedom, justice, and the recognition of human rights.',
+    tag: 'Symbolism',
+  },
+  {
+    id: 'digital-advocacy',
+    title: 'Digital Advocacy: Speaking Truth in the Algorithmic Age',
+    short: 'How Palestinian youth use social media and open technology to document reality and bypass traditional media barriers.',
+    content: 'In the modern era, the struggle for Palestinian rights has moved into the digital frontier. With traditional media often filtering or omitting key narratives, Palestinian youth and activists have turned to social media platforms to broadcast raw, unedited reality to the world in real-time. This "digital intifada" uses hashtags, viral videos, and citizen journalism to bypass traditional gatekeepers.\n\nHowever, this digital presence faces significant challenges, including shadow-banning, algorithmic bias, and systematic censorship. Despite these hurdles, the use of open-source tools, VPNs, and decentralized networks has allowed the Palestinian story to reach millions globally. It highlights that in the 21st century, the ability to document and share ones own story is one of the most potent forms of resistance.',
+    tag: 'Modern Struggle',
+  },
 ];
 
 export default function Palestine() {
@@ -82,7 +96,7 @@ export default function Palestine() {
           transition={{ duration: 0.7 }}
           className={styles.header}
         >
-          <p className="section-label">// solidarity & justice</p>
+          <p className="section-label">{'// solidarity & justice'}</p>
           <h2 className="section-title">
             Stand for <span className={styles.palText}>Palestine</span>
           </h2>
@@ -129,7 +143,7 @@ export default function Palestine() {
 
         {/* Interactive Advocacy Articles Section */}
         <div className={styles.articlesHeader}>
-          <p className={styles.articlesSub}>// educational resource library</p>
+          <p className={styles.articlesSub}>{'// educational resource library'}</p>
           <h3 className={styles.articlesTitle}>Advocacy & Historical truth</h3>
           <p className={styles.articlesDesc}>Explore expanding essays written to highlight and preserve profound historic realities.</p>
         </div>

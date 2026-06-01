@@ -64,17 +64,26 @@
   flex-direction: column;
   align-items: flex-start;
   flex: 1;
+  min-width: 0; /* Prevent overflow */
 }
 
 .socialName {
   font-size: 0.92rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .socialValue {
   font-family: 'Fira Code', monospace;
   font-size: 0.78rem;
   color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .arrow {
