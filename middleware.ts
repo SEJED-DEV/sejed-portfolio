@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server'
 export function middleware(req: NextRequest) {
   const host = req.headers.get('host') || ''
 
-  if (host.includes('docs.sejed.dev')) {
+  if (host.includes('customize.sejed.dev')) {
     const url = req.nextUrl.clone()
     url.pathname = '/customize'
     return NextResponse.rewrite(url)
