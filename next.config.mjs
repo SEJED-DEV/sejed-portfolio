@@ -9,21 +9,6 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-
-  async rewrites() {
-    return [
-      {
-        source: '/',
-        has: [
-          {
-            type: 'host',
-            value: 'docs.sejed.dev'       },
-        ],
-        destination: '/customize',
-        permanent: false,
-      },
-    ]
-  },
 }
 
 export default nextConfig
