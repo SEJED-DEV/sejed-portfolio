@@ -10,7 +10,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
 
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: '/',
