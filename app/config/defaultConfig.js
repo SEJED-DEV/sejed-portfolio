@@ -27,7 +27,7 @@ export const defaultConfig = {
     { value: "99.99%", label: "Average Uptime Reliability", icon: "⚡" }
   ],
   socials: [
-    { name: 'Email', value: 'sejed.dev@gmail.com', href: 'mailto:sejed.dev@gmail.com', color: '#6366f1' },
+    { name: 'Email', value: 'support@sejed.dev', href: 'mailto:support@sejed.dev', color: '#6366f1' },
     { name: 'GitHub', value: '@SEJED-DEV', href: 'https://github.com/SEJED-DEV', color: '#8b5cf6' },
     { name: 'Discord', value: 'sejed.dev (Click to Copy ID)', href: 'https://discord.com/users/985444871722631199', color: '#5865f2' },
     { name: 'Instagram', value: '@http.sejed.official', href: 'https://instagram.com/http.sejed.official', color: '#e1306c' },
