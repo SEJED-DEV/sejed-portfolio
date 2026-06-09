@@ -48,6 +48,12 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </head>
       <body>
+        <div className="ambient" aria-hidden="true">
+          <div className="ambientOrb ambientOrb1" />
+          <div className="ambientOrb ambientOrb2" />
+          <div className="ambientOrb ambientOrb3" />
+          <div className="ambientMesh" />
+        </div>
         {children}
         <script
           dangerouslySetInnerHTML={{

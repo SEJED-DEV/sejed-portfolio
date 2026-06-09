@@ -26,7 +26,7 @@ const changes = [
       'First public release of the Portfolio Studio (BETA).',
       'Real-time split-screen preview engine.',
       'Configurable theme colors, fonts, and background effects.',
-      'Discord Bot Simulator integration.',
+      'Interactive command console playground.',
       'Dynamic project and timeline builders.'
     ],
     status: 'stable'

@@ -7,7 +7,6 @@ import Stats from './components/Stats';
 import Skills from './components/Skills';
 import Palestine from './components/Palestine';
 import Projects from './components/Projects';
-import BotSimulator from './components/BotSimulator';
 import Testimonials from './components/Testimonials';
 import Faq from './components/Faq';
 import Contact from './components/Contact';
@@ -27,7 +26,23 @@ export default function Home() {
     const saved = localStorage.getItem('portfolio-config');
     if (saved) {
       try {
-        setConfig(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        const merged = {
+          ...defaultConfig,
+          ...parsed,
+          projects: defaultConfig.projects.map((dp, i) => ({
+            ...(parsed.projects && parsed.projects[i] ? parsed.projects[i] : {}),
+            ...dp,
+          })),
+          personal: { ...defaultConfig.personal, ...(parsed.personal || {}) },
+          socials: parsed.socials || defaultConfig.socials,
+          skills: (parsed.skills || defaultConfig.skills).map(cat => ({
+            ...cat,
+            items: cat.items.map(item => typeof item === 'string' ? item : item.name),
+          })),
+          stats: parsed.stats || defaultConfig.stats,
+        };
+        setConfig(merged);
       } catch (e) {
         console.error("Failed to parse saved config", e);
       }
@@ -62,7 +77,7 @@ export default function Home() {
           <Stats stats={config.stats} />
         </ErrorBoundary>
         <ErrorBoundary>
-          <Skills skills={config.skills} />
+          <Skills />
         </ErrorBoundary>
         
         {config.personal.showPalestine && (
@@ -72,14 +87,8 @@ export default function Home() {
         )}
         
         <ErrorBoundary>
-          <Projects />
+          <Projects projects={config.projects} featured />
         </ErrorBoundary>
-        
-        {config.personal.showSimulator && (
-          <ErrorBoundary>
-            <BotSimulator discordBot={config.discordBot} />
-          </ErrorBoundary>
-        )}
         
         {config.personal.showTestimonials && (
           <ErrorBoundary>

@@ -1,124 +1,104 @@
-.skills {
+.section {
   position: relative;
   overflow: hidden;
 }
 
-.orb {
-  width: 450px;
-  height: 450px;
-  bottom: -100px;
-  left: -120px;
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.header .section-subtitle {
+  text-align: center;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .card {
-  padding: 28px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .cardHeader {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
 }
 
 .cardIcon {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  background: rgba(99, 102, 241, 0.15);
-  color: var(--accent-indigo);
   font-size: 1rem;
-  font-weight: 700;
+  background: rgba(99, 102, 241, 0.08);
+  border-radius: 10px;
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  flex-shrink: 0;
   font-family: 'Fira Code', monospace;
+  color: var(--accent-indigo);
+}
+
+.card:hover .cardIcon {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.25);
 }
 
 .cardTitle {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 600;
+  color: var(--text-primary);
 }
 
-.items {
+.cardSkills {
   display: flex;
-  flex-direction: column;
-  gap: 18px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.skillItem {
-  background: transparent;
-  border: none;
-  padding: 4px 8px;
-  margin: -4px -8px;
-  border-radius: var(--radius-sm);
-  display: block;
-  width: calc(100% + 16px);
-  text-align: left;
-  cursor: pointer;
-  outline: none;
-  transition: all 0.2s ease;
-}
-
-.skillItem:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.skillItem:hover .skillName {
-  color: var(--accent-cyan);
-}
-
-.skillItem:hover .barFill {
-  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-indigo));
-  box-shadow: 0 0 16px rgba(6, 182, 212, 0.6);
-}
-
-.skillInfo {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.skillName {
-  font-size: 0.88rem;
+.skillChip {
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 0.78rem;
   font-weight: 500;
-  color: var(--text-secondary);
-}
-
-.skillPercent {
   font-family: 'Fira Code', monospace;
-  font-size: 0.75rem;
-  color: var(--text-muted);
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-.barTrack {
-  width: 100%;
-  height: 6px;
-  border-radius: 99px;
-  background: rgba(255, 255, 255, 0.06);
-  overflow: hidden;
+.skillChip:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: var(--accent-indigo);
+  transform: translateY(-1px);
 }
 
-.barFill {
-  height: 100%;
-  border-radius: 99px;
-  background: var(--gradient);
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+.skillChip:active {
+  transform: translateY(0);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .grid {
     grid-template-columns: 1fr;
   }

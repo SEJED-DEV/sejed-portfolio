@@ -364,6 +364,148 @@
   padding: 10px 24px;
 }
 
+/* Stats Row */
+.statsRow {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.12);
+  min-width: 120px;
+  flex: 1;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Fira Code', monospace;
+  background: linear-gradient(135deg, #ef4444, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Essays Section */
+.essaysSection {
+  margin-top: 80px;
+}
+
+.essaysHeader {
+  text-align: center;
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.essaysSub {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.essaysTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.essaysDesc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+/* Filters */
+.filtersRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tagFilters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tagBtn {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  padding: 6px 14px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tagBtn:hover {
+  border-color: rgba(239, 68, 68, 0.3);
+  color: var(--text-primary);
+}
+
+.tagActive {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.searchWrap {
+  position: relative;
+}
+
+.searchInput {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 10px 16px 10px 40px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  width: 260px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.searchInput:focus {
+  border-color: var(--accent-indigo);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
 @media (max-width: 992px) {
   .essayGrid {
     grid-template-columns: repeat(2, 1fr);

@@ -60,13 +60,6 @@ export default function CustomizeStudio() {
     }));
   };
 
-  const updateDiscordBot = (key, val) => {
-    setConfig(prev => ({
-      ...prev,
-      discordBot: { ...prev.discordBot, [key]: val }
-    }));
-  };
-
   const handleDownloadConfig = async () => {
     setIsDownloading(true);
     // Simulate brief processing for UX feedback
@@ -139,7 +132,6 @@ export default function CustomizeStudio() {
       theme: 'Theme & Typography',
       personal: 'Bio & Story',
       stats: 'Metrics Stats',
-      discord: 'Discord Console',
       timeline: 'Journey Timeline',
       projects: 'Projects Catalog'
     };
@@ -251,13 +243,6 @@ export default function CustomizeStudio() {
             <div className={styles.navGroup}>
               <span className={styles.navGroupTitle}>Content</span>
               <button
-                className={`${styles.navBtn} ${activeCategory === 'discord' ? styles.navActive : ''}`}
-                onClick={() => setActiveCategory('discord')}
-                title={getCategoryName('discord')}
-              >
-                <span className={styles.navIcon}>🤖</span>
-              </button>
-              <button
                 className={`${styles.navBtn} ${activeCategory === 'projects' ? styles.navActive : ''}`}
                 onClick={() => setActiveCategory('projects')}
                 title={getCategoryName('projects')}
@@ -335,21 +320,6 @@ export default function CustomizeStudio() {
                       type="checkbox" 
                       checked={config.personal.showPalestine}
                       onChange={(e) => updatePersonal('showPalestine', e.target.checked)}
-                    />
-                    <span className={styles.slider} />
-                  </label>
-                </div>
-
-                <div className={styles.toggleField}>
-                  <div className={styles.toggleText}>
-                    <strong>Discord Bot Simulator Console</strong>
-                    <span>Fully interactive simulated chat workspace with commands</span>
-                  </div>
-                  <label className={styles.switch}>
-                    <input 
-                      type="checkbox" 
-                      checked={config.personal.showSimulator}
-                      onChange={(e) => updatePersonal('showSimulator', e.target.checked)}
                     />
                     <span className={styles.slider} />
                   </label>
@@ -456,38 +426,6 @@ export default function CustomizeStudio() {
                     </div>
                   </div>
                 ))}
-              </div>
-            )}
-
-            {activeCategory === 'discord' && (
-              <div className={styles.formGroup}>
-                <h3>🤖 Interactive Discord Simulator Embed Constructor</h3>
-                <p className={styles.helpText}>Customize the exact identity, avatars, and greetings of the simulated Discord bot console:</p>
-                
-                <div className={styles.inputField}>
-                  <label>Bot Custom Display Name</label>
-                  <input 
-                    type="text" 
-                    value={config.discordBot.botName}
-                    onChange={(e) => updateDiscordBot('botName', e.target.value)}
-                  />
-                </div>
-                <div className={styles.inputField}>
-                  <label>Bot Custom Profile Avatar (Emoji)</label>
-                  <input 
-                    type="text" 
-                    value={config.discordBot.botAvatar}
-                    onChange={(e) => updateDiscordBot('botAvatar', e.target.value)}
-                  />
-                </div>
-                <div className={styles.inputField}>
-                  <label>Bot Simulated Welcome Description (Markdown bold support)</label>
-                  <textarea 
-                    rows={4} 
-                    value={config.discordBot.welcomeMessage}
-                    onChange={(e) => updateDiscordBot('welcomeMessage', e.target.value)}
-                  />
-                </div>
               </div>
             )}
 
@@ -607,30 +545,6 @@ export default function CustomizeStudio() {
               </div>
             </div>
 
-            {/* Simulated Discord bot preview frame inside right preview! */}
-            {config.personal.showSimulator && (
-              <div className={styles.mockSectionCard}>
-                <h3>🤖 Live Discord Bot Simulator Console Preview</h3>
-                <div className={styles.mockDiscordConsole}>
-                  <div className={styles.mDiscordHeader}>
-                    <span className={styles.mDiscordHashtag}>#</span>
-                    <span>🤖-cortex-commands</span>
-                  </div>
-                  <div className={styles.mDiscordMessage}>
-                    <span className={styles.mDiscordAvatar}>{config.discordBot.botAvatar}</span>
-                    <div className={styles.mDiscordMsgContent}>
-                      <div className={styles.mDiscordMeta}>
-                        <strong>{config.discordBot.botName}</strong>
-                        <span className={styles.mDiscordBadge}>BOT</span>
-                        <span className={styles.mDiscordTime}>Today at 12:00 PM</span>
-                      </div>
-                      <p className={styles.mDiscordText}>{config.discordBot.welcomeMessage}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
             {/* About Card Preview */}
             <div className={styles.mockSectionCard}>
               <h3>👤 Academic Journey History</h3>
@@ -667,7 +581,6 @@ export default function CustomizeStudio() {
             <div className={styles.mockActiveFooter}>
               <span>✨ Active Sections: </span>
               <span>{config.personal.showPalestine ? '🇵🇸 Palestine (ON)' : 'Palestine (OFF)'}</span> •{' '}
-              <span>{config.personal.showSimulator ? '🤖 Discord Chat Console (ON)' : 'Discord Chat (OFF)'}</span> •{' '}
               <span>{config.personal.showTestimonials ? '💬 Testimonials Reviews (ON)' : 'Reviews (OFF)'}</span>
             </div>
           </div>

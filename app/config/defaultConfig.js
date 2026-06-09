@@ -17,7 +17,6 @@ export const defaultConfig = {
     backgroundFx: "particles", // particles, nebulas, static
     themeMode: "dark", // dark, light
     showPalestine: true,
-    showSimulator: true,
     showTestimonials: true
   },
   stats: [
@@ -33,11 +32,6 @@ export const defaultConfig = {
     { name: 'Instagram', value: '@http.sejed.official', href: 'https://instagram.com/http.sejed.official', color: '#e1306c' },
     { name: 'WhatsApp', value: '+216 94 155 000', href: 'https://wa.me/21694155000', color: '#25d366' }
   ],
-  discordBot: {
-    botName: "CortexBot",
-    botAvatar: "🤖",
-    welcomeMessage: "Hello! I am **CortexBot**, a modular Discord automation engine designed by **Sejed**. Type `/` or click one of the preset commands below to see what I can do!"
-  },
   timeline: [
     { 
       year: '2015 - 2021', 
@@ -58,7 +52,7 @@ export const defaultConfig = {
       desc: 'Excelled in advanced mathematics and computer studies. Formulated my architectural designs and began constructing the blueprint of CortexBot.'
     },
     { 
-      year: '2024 - Present', 
+      year: '2024 - 2026', 
       label: 'Lycée Pilote de la Manouba',
       emoji: '🎓',
       desc: 'Admitted to the highly competitive and prestigious Lycée Pilote (Pioneer School), reserved for the country\'s top academic minds. Continuing to balance elite academics while leading core development at Cortex.'
@@ -68,50 +62,88 @@ export const defaultConfig = {
     {
       title: 'Languages',
       icon: '{ }',
-      items: [
-        { name: 'JavaScript', level: 95 },
-        { name: 'TypeScript', level: 80 },
-        { name: 'Python', level: 75 },
-        { name: 'HTML5', level: 95 },
-        { name: 'CSS3 / SCSS', level: 90 },
-        { name: 'Lua', level: 65 }
-      ]
+      items: ['JavaScript', 'TypeScript', 'Python', 'HTML5', 'CSS3 / SCSS', 'Lua']
     },
     {
       title: 'Frontend',
       icon: '◆',
-      items: [
-        { name: 'Next.js', level: 90 },
-        { name: 'React', level: 88 },
-        { name: 'Framer Motion', level: 78 },
-        { name: 'CSS Modules', level: 85 },
-        { name: 'Responsive Design', level: 92 },
-        { name: 'Vercel', level: 88 }
-      ]
+      items: ['Next.js', 'React', 'Framer Motion', 'CSS Modules', 'Responsive Design', 'Vercel']
     },
     {
       title: 'Backend',
       icon: '⚙',
-      items: [
-        { name: 'Node.js', level: 95 },
-        { name: 'Express.js', level: 88 },
-        { name: 'Discord.js', level: 95 },
-        { name: 'REST APIs', level: 90 },
-        { name: 'WebSockets', level: 78 },
-        { name: 'Nix', level: 60 }
-      ]
+      items: ['Node.js', 'Express.js', 'Discord.js', 'REST APIs', 'WebSockets', 'Nix']
+    },
+    {
+      title: 'Database',
+      icon: '◉',
+      items: ['MongoDB', 'SQLite', 'PostgreSQL', 'Mongoose', 'JSON Storage']
+    },
+    {
+      title: 'DevOps & Tools',
+      icon: '▲',
+      items: ['Git & GitHub', 'Docker', 'Linux / VPS', 'CI/CD', 'Cloudflare']
+    },
+    {
+      title: 'AI & APIs',
+      icon: '✦',
+      items: ['Gemini API', 'OpenAI / GPT', 'Groq (Llama)', 'PRC / ERLC API', 'Webhooks']
     }
   ],
   projects: [
     {
       title: 'Sejed Portfolio',
-      description: 'The source code of this portfolio! A premium, cosmic dark-themed glassmorphic website built using Next.js, React, Framer Motion, and custom CSS modules. Fully open-source and customizable.',
+      description: 'A high-performance, glassmorphic Next.js developer portfolio featuring zero-render cursor tracking and fully customizable design.',
       tags: ['Next.js', 'React', 'Framer Motion', 'Open Source'],
       color: 'purple',
       emoji: '🌌',
       category: 'web',
       github: 'https://github.com/SEJED-DEV/sejed-portfolio',
-      live: 'https://sejed.dev'
+      live: 'https://sejed.dev',
+      featured: true
+    },
+    {
+      title: 'Nova ERLC Manager',
+      description: 'The most popular ER:LC management bot — advanced session management, staff tracking, automated voting, and live PRC API dashboards.',
+      tags: ['JavaScript', 'Discord.js', 'PRC API'],
+      color: 'indigo',
+      emoji: '🌟',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/Nova-ERLC-Manager',
+      live: null,
+      featured: true
+    },
+    {
+      title: 'SGL Audit',
+      description: 'A professional corporate website for SGL Audit Expertise, a Tunisian auditing and accounting firm. Built with TypeScript and Next.js.',
+      tags: ['TypeScript', 'Next.js', 'Corporate'],
+      color: 'indigo',
+      emoji: '📊',
+      category: 'web',
+      github: 'https://github.com/SEJED-DEV/SGL-Audit',
+      live: 'https://sglaudit.com',
+      featured: true
+    },
+    {
+      title: 'Cortex QuranBot',
+      description: 'A beautifully designed Discord bot for Quran recitation, ayah lookup, and daily Islamic reminders with multi-language embed formatting.',
+      tags: ['Node.js', 'Discord.js', 'REST API'],
+      color: 'purple',
+      emoji: '📖',
+      category: 'bot',
+      github: null,
+      live: 'https://quran.cortexhq.net',
+      featured: true
+    },
+    {
+      title: 'Vectra Mod',
+      description: 'Advanced multi-purpose Discord moderation infrastructure with an interactive V2 staff panel. MongoDB-backed, permission-isolated, and built for scalable communities.',
+      tags: ['Node.js', 'Discord.js', 'MongoDB', 'Moderation'],
+      color: 'purple',
+      emoji: '🛡️',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/Vectra-Mod',
+      live: null
     },
     {
       title: 'CortexHQ',
@@ -125,8 +157,8 @@ export const defaultConfig = {
     },
     {
       title: 'Cortex',
-      description: 'A feature-rich multipurpose Discord bot with deep AI integration. Handles moderation, utility, fun commands, and intelligent conversational AI across multiple servers.',
-      tags: ['Node.js', 'Discord.js', 'AI Integration', 'MongoDB'],
+      description: 'A feature-rich multipurpose Discord bot with deep AI integration. Handles moderation, utility, fun commands, and intelligent conversational AI.',
+      tags: ['Node.js', 'Discord.js', 'AI', 'MongoDB'],
       color: 'indigo',
       emoji: '🧠',
       category: 'bot',
@@ -135,7 +167,7 @@ export const defaultConfig = {
     },
     {
       title: 'Cortex Core',
-      description: 'An open-source core framework used to power the Cortex Discord ecosystem. A highly scalable, modular bot engine with built-in command handlers, events manager, and seamless AI integrations.',
+      description: 'An open-source core framework powering the Cortex Discord ecosystem. A scalable, modular bot engine with built-in command handlers and AI integrations.',
       tags: ['Node.js', 'Discord.js', 'Open Source', 'Framework'],
       color: 'indigo',
       emoji: '🤖',
@@ -145,7 +177,7 @@ export const defaultConfig = {
     },
     {
       title: 'Cortex Modmail',
-      description: 'A dedicated modmail system companion for Cortex. Features session persistence, automated transcripts, staff assignment, and inline attachment rendering.',
+      description: 'A dedicated modmail system for Cortex with session persistence, automated transcripts, staff assignment, and inline attachment rendering.',
       tags: ['Node.js', 'Discord.js', 'SQLite'],
       color: 'cyan',
       emoji: '📨',
@@ -154,18 +186,8 @@ export const defaultConfig = {
       live: 'https://modmail.cortexhq.net'
     },
     {
-      title: 'Cortex QuranBot',
-      description: 'A beautifully designed Discord bot for Quran recitation, ayah lookup, and daily Islamic reminders. Multi-language support with elegant embed formatting.',
-      tags: ['Node.js', 'Discord.js', 'REST API'],
-      color: 'purple',
-      emoji: '📖',
-      category: 'bot',
-      github: null,
-      live: 'https://quran.cortexhq.net'
-    },
-    {
       title: 'Vortex',
-      description: 'A state-of-the-art Discord bot that automates server architecture through interactive AI-driven dialogues. Built with TypeScript for type safety and reliability.',
+      description: 'A state-of-the-art Discord bot that automates server architecture through interactive AI-driven dialogues. Built with TypeScript.',
       tags: ['TypeScript', 'Discord.js', 'AI'],
       color: 'purple',
       emoji: '🌀',
@@ -174,18 +196,8 @@ export const defaultConfig = {
       live: null
     },
     {
-      title: 'Nova ERLC Manager',
-      description: 'A premium Discord bot for ER:LC Private Servers with advanced session management, staff tracking, automated vote systems, and live server dashboards via PRC API.',
-      tags: ['JavaScript', 'Discord.js', 'PRC API'],
-      color: 'indigo',
-      emoji: '🌟',
-      category: 'bot',
-      github: 'https://github.com/SEJED-DEV/Nova-ERLC-Manager',
-      live: null
-    },
-    {
       title: 'Vanguard',
-      description: 'Industrial-grade moderation solution for Discord. Features custom SQLite caching layer and ensures user privacy through restricted global logging.',
+      description: 'Industrial-grade moderation solution with a custom SQLite caching layer and privacy-first restricted global logging.',
       tags: ['JavaScript', 'Discord.js', 'SQLite'],
       color: 'cyan',
       emoji: '🛡️',
@@ -195,7 +207,7 @@ export const defaultConfig = {
     },
     {
       title: 'Pickle Infra',
-      description: 'The definitive Discord utility for Roblox sellers. Professional ticketing, automated entries, and secure sales tracking built for maximum reliability.',
+      description: 'The definitive Discord utility for Roblox sellers. Professional ticketing, automated entries, and secure sales tracking with 0% packet loss.',
       tags: ['JavaScript', 'Discord.js', 'Vercel'],
       color: 'purple',
       emoji: '🥒',
@@ -205,7 +217,7 @@ export const defaultConfig = {
     },
     {
       title: 'ERLC Utility Bot',
-      description: 'Enterprise-grade Discord utility bot for ER:LC Private Servers. Modular architecture with local SQLite persistence and advanced ERLC API V2 optimizations.',
+      description: 'Enterprise-grade Discord utility bot for ER:LC Private Servers with modular architecture, SQLite persistence, and ERLC API V2 optimizations.',
       tags: ['JavaScript', 'Discord.js', 'SQLite', 'ERLC API'],
       color: 'indigo',
       emoji: '⚙️',
@@ -224,70 +236,8 @@ export const defaultConfig = {
       live: null
     },
     {
-      title: 'OpenSyntax Academy',
-      description: 'An online learning platform built with TypeScript and Next.js. Features interactive coding lessons and structured curriculum for aspiring developers.',
-      tags: ['TypeScript', 'Next.js', 'Vercel'],
-      color: 'purple',
-      emoji: '📚',
-      category: 'web',
-      github: 'https://github.com/SEJED-DEV/opensyntax-academy',
-      live: 'https://opensyntax-academy.vercel.app/'
-    },
-    {
-      title: 'Red Crescent Platform',
-      description: 'A private social media platform built for the IFRC and ICRC (Red Cross/Red Crescent). Secure communication and collaboration for humanitarian workers.',
-      tags: ['Full Stack', 'Private', 'Humanitarian'],
-      color: 'indigo',
-      emoji: '🏥',
-      category: 'web',
-      github: null,
-      live: null,
-      isPrivate: true
-    },
-    {
-      title: 'CodeXTN',
-      description: 'A platform for aspiring coders — daily challenges, coding competitions, and project building. Users compete for rankings and earn recognition.',
-      tags: ['HTML', 'CSS', 'JavaScript'],
-      color: 'cyan',
-      emoji: '🏆',
-      category: 'web',
-      github: 'https://github.com/TSSEJED/CodeXTN',
-      live: null
-    },
-    {
-      title: 'Bots Studio',
-      description: 'A web dashboard for managing and monitoring Discord bots. Built with TypeScript and deployed on Vercel for maximum performance.',
-      tags: ['TypeScript', 'Next.js', 'Vercel'],
-      color: 'purple',
-      emoji: '🎛️',
-      category: 'web',
-      github: 'https://github.com/TSSEJED/bots-studio',
-      live: 'https://bots-studio.vercel.app'
-    },
-    {
-      title: 'SGL Audit Expertise',
-      description: 'A private corporate website designed for SGL Audit Expertise — a Tunisian auditing and accounting firm. Clean, corporate layout with optimized security.',
-      tags: ['HTML', 'CSS', 'Private'],
-      color: 'indigo',
-      emoji: '📊',
-      category: 'web',
-      github: null,
-      live: null,
-      isPrivate: true
-    },
-    {
-      title: 'DevRegistry',
-      description: 'A universal discovery platform where creators can submit ANY digital product - from npm packages to Discord bots and tools.',
-      tags: ['TypeScript', 'Next.js', 'Discovery'],
-      color: 'purple',
-      emoji: '📦',
-      category: 'web',
-      github: 'https://github.com/SEJED-DEV/DevRegistry',
-      live: null
-    },
-    {
       title: 'Digital Akhi Bot',
-      description: 'A production-grade, secure Discord bot designed for Islamic communities. Featuring prayer times, Quran, and community moderation.',
+      description: 'A production-grade, secure Discord bot for Islamic communities featuring prayer times, Quran recitation, and community moderation.',
       tags: ['TypeScript', 'Discord.js', 'Islamic'],
       color: 'indigo',
       emoji: '🕌',
@@ -303,17 +253,68 @@ export const defaultConfig = {
       emoji: '📜',
       category: 'bot',
       github: 'https://github.com/SEJED-DEV/nexus-transcripts',
-      live: 'https://nexus-transcripts.pages.dev/'
+      live: 'https://nexus-transcripts.pages.dev/',
+      featured: true
+    },
+    {
+      title: 'Community Zone TN Bot',
+      description: 'A Discord bot for the Zone TN Tunisian developer community, fostering collaboration and resource sharing.',
+      tags: ['JavaScript', 'Discord.js', 'Community'],
+      color: 'purple',
+      emoji: '🤝',
+      category: 'bot',
+      github: 'https://github.com/SEJED-DEV/Community-Zone-TN-Bot',
+      live: null
     },
     {
       title: 'Colorado State Roleplay',
-      description: 'A specialized Discord bot for managing Colorado State RP communities, featuring automated session tracking and staff tools.',
+      description: 'A specialized Discord bot for managing Colorado State RP communities with automated session tracking and staff tools.',
       tags: ['JavaScript', 'Discord.js', 'Roleplay'],
       color: 'purple',
       emoji: '🏔️',
       category: 'bot',
       github: 'https://github.com/SEJED-DEV/Colorado-State-Roleplay',
       live: null
+    },
+    {
+      title: 'OpenSyntax Academy',
+      description: 'An online learning platform built with TypeScript and Next.js featuring interactive coding lessons and structured curriculum.',
+      tags: ['TypeScript', 'Next.js', 'Vercel'],
+      color: 'purple',
+      emoji: '📚',
+      category: 'web',
+      github: 'https://github.com/SEJED-DEV/opensyntax-academy',
+      live: 'https://opensyntax-academy.vercel.app/'
+    },
+    {
+      title: 'DevRegistry',
+      description: 'A universal discovery platform where creators can submit any digital product — from npm packages to Discord bots and tools.',
+      tags: ['TypeScript', 'Next.js', 'Discovery'],
+      color: 'purple',
+      emoji: '📦',
+      category: 'web',
+      github: 'https://github.com/SEJED-DEV/DevRegistry',
+      live: null
+    },
+    {
+      title: 'CodeXTN',
+      description: 'A platform for aspiring coders — daily challenges, coding competitions, and project building. Compete for rankings and earn recognition.',
+      tags: ['HTML', 'CSS', 'JavaScript'],
+      color: 'cyan',
+      emoji: '🏆',
+      category: 'web',
+      github: 'https://github.com/TSSEJED/CodeXTN',
+      live: null
+    },
+    {
+      title: 'Bots Studio',
+      description: 'A web dashboard for managing and monitoring Discord bots. Built with TypeScript and deployed on Vercel.',
+      tags: ['TypeScript', 'Next.js', 'Vercel'],
+      color: 'purple',
+      emoji: '🎛️',
+      category: 'web',
+      github: 'https://github.com/TSSEJED/bots-studio',
+      live: 'https://bots-studio.vercel.app'
     },
     {
       title: 'Zone-TN',
@@ -329,11 +330,22 @@ export const defaultConfig = {
       title: 'Develeport Repository',
       description: 'The core repository for the Develeport ecosystem, housing essential tools and documentation for developers.',
       tags: ['Core', 'Ecosystem', 'Documentation'],
-      color: 'cyan',
+      color: 'indigo',
       emoji: '🏗️',
       category: 'web',
       github: 'https://github.com/SEJED-DEV/The-Develeport-Repository',
       live: null
+    },
+    {
+      title: 'Red Crescent Platform',
+      description: 'A private social media platform built for the IFRC and ICRC (Red Cross/Red Crescent). Secure communication for humanitarian workers.',
+      tags: ['Full Stack', 'Private', 'Humanitarian'],
+      color: 'indigo',
+      emoji: '🏥',
+      category: 'web',
+      github: null,
+      live: null,
+      isPrivate: true
     }
   ]
 };

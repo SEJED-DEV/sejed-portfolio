@@ -120,9 +120,6 @@ export default function ContextMenu() {
           <button className={styles.item} onClick={() => handleScrollTo('about')}>
             <span>👤</span> About Sejed
           </button>
-          <button className={styles.item} onClick={() => handleScrollTo('simulator')}>
-            <span>🤖</span> Bot Simulator
-          </button>
           <button className={styles.item} onClick={() => handleScrollTo('palestine')}>
             <span style={{ display: 'inline-flex', alignItems: 'center' }}><Flag country="PS" size="sm" /></span> Palestine Solidarity
           </button>

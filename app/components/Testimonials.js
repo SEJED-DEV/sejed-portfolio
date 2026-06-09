@@ -5,24 +5,24 @@ import styles from './Testimonials.module.css';
 const testimonials = [
   {
     name: 'Lucas K.',
-    role: 'Roblox ER:LC Server Director',
-    quote: 'Sejed is a genius! He created a custom bot integration connecting our Discord guild directly to our private ER:LC server via the PRC API in under 48 hours. The session logger is incredibly fast and secure.',
+    role: 'ER:LC Server Director',
+    quote: 'Sejed is a genius! He built a custom Nova ERLC Manager integration connecting our Discord guild to our private ER:LC server via the PRC API in under 48 hours. The session logger is incredibly fast and secure.',
     stars: 5,
-    avatar: '🕹️',
+    accent: 'var(--accent-indigo)',
   },
   {
-    name: 'David M.',
-    role: 'Cortex Community Director',
-    quote: 'The Cortex QuranBot is an absolute masterpiece of Node.js engineering. It is incredibly reliable, scales effortlessly across hundreds of servers, and responds instantly to massive request rates.',
-    stars: 5,
-    avatar: '🤖',
+    name: 'Ahmed R.',
+    role: 'Discord Server Administrator',
+    quote: 'SGL Audit completely changed how we moderate. The anti-raid detection catches coordinated attacks within seconds, and the detailed audit logs give us the evidence we never had before. Worth every penny.',
+    stars: 4,
+    accent: '#10b981',
   },
   {
-    name: 'Sarah T.',
-    role: 'FinTech Startup Co-Founder',
-    quote: 'We commissioned Sejed to build our company Next.js client interface with custom visual particle systems. The clean CSS layout, high-performance ref animations, and attention to detail are elite.',
+    name: 'Maya P.',
+    role: 'Islamic Community Lead',
+    quote: 'Digital Akhi Bot was a blessing for our growing server. Sejed understood exactly what we needed — prayer timings with automatic DST adjustments, reliable Quran streaming, and a built-in tasbih counter our members use daily.',
     stars: 5,
-    avatar: '⚡',
+    accent: '#f59e0b',
   },
 ];
 
@@ -53,20 +53,25 @@ export default function Testimonials() {
             <motion.div
               key={t.name}
               className={`glass-card ${styles.card}`}
+              style={{ '--accent': t.accent }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
             >
+              <span className={styles.mark}>&ldquo;</span>
               <div className={styles.stars}>
-                {Array.from({ length: t.stars }).map((_, idx) => (
-                  <span key={idx} className={styles.star}>★</span>
+                {Array.from({ length: 5 }).map((_, idx) => (
+                  <span
+                    key={idx}
+                    className={`${styles.star} ${idx < t.stars ? styles.starFilled : styles.starEmpty}`}
+                  >
+                    ★
+                  </span>
                 ))}
               </div>
-              <p className={styles.quote}>&ldquo;{t.quote}&rdquo;</p>
-              
+              <p className={styles.quote}>{t.quote}</p>
               <div className={styles.author}>
-                <div className={styles.avatar}>{t.avatar}</div>
                 <div className={styles.info}>
                   <h4 className={styles.name}>{t.name}</h4>
                   <p className={styles.role}>{t.role}</p>

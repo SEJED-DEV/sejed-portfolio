@@ -3,11 +3,42 @@
   overflow: hidden;
 }
 
-.orb {
-  width: 500px;
-  height: 500px;
-  top: 30%;
-  right: -150px;
+.statsRow {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  min-width: 120px;
+  flex: 1;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Fira Code', monospace;
+  background: linear-gradient(135deg, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'Fira Code', monospace;
 }
 
 .openSourceBadge {
@@ -23,7 +54,7 @@
 
 .openSourceBadge strong {
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .filters {
@@ -34,6 +65,69 @@
   flex-wrap: wrap;
   gap: 16px;
   width: 100%;
+}
+
+.filterLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.searchWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.searchInput {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 10px 16px 10px 40px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  width: 260px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.searchInput:focus {
+  border-color: var(--accent-indigo);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.searchClear {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.searchClear:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
 }
 
 .categoryFilters {
@@ -130,9 +224,15 @@
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(99, 102, 241, 0.08);
   border-radius: 14px;
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  transition: all 0.3s ease;
+}
+
+.card:hover .cardEmoji {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
 }
 
 .cardLinks {
@@ -169,6 +269,41 @@
   line-height: 1.7;
   flex: 1;
   margin-bottom: 20px;
+}
+
+.githubMeta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(99, 102, 241, 0.08);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--text-secondary);
+}
+
+.metaItem svg {
+  opacity: 0.7;
+}
+
+.metaLang {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--accent-cyan);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.15);
 }
 
 .cardTags {
