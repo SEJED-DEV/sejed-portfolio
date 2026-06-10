@@ -1,10 +1,3 @@
-const cache = new Map();
-const CACHE_TTL = 5 * 60 * 1000;
-
-function getCacheKey(repo) {
-  return `gh_${repo.replace(/[^a-zA-Z0-9_-]/g, '_')}`;
-}
-
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const repo = searchParams.get('repo');
@@ -13,25 +6,16 @@ export async function GET(request) {
     return Response.json({ error: 'Missing repo parameter' }, { status: 400 });
   }
 
-  const cacheKey = getCacheKey(repo);
-  const cached = cache.get(cacheKey);
-
-  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-    return Response.json(cached.data, {
-      headers: {
-        'Cache-Control': 'public, max-age=300, s-maxage=600',
-        'X-Cache': 'HIT',
-      },
-    });
-  }
-
   try {
     const headers = { 'Accept': 'application/vnd.github.v3+json' };
     if (process.env.GITHUB_TOKEN) {
       headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
 
-    const res = await fetch(`https://api.github.com/repos/${repo}`, { headers });
+    const res = await fetch(`https://api.github.com/repos/${repo}`, {
+      headers,
+      next: { revalidate: 300 },
+    });
 
     if (!res.ok) {
       if (res.status === 403 || res.status === 429) {
@@ -56,24 +40,12 @@ export async function GET(request) {
       license: data.license?.spdx_id || null,
     };
 
-    cache.set(cacheKey, { data: result, timestamp: Date.now() });
-
     return Response.json(result, {
       headers: {
         'Cache-Control': 'public, max-age=300, s-maxage=600',
-        'X-Cache': 'MISS',
       },
     });
   } catch {
-    const stale = cache.get(cacheKey);
-    if (stale) {
-      return Response.json(stale.data, {
-        headers: {
-          'Cache-Control': 'public, max-age=60, s-maxage=120',
-          'X-Cache': 'STALE',
-        },
-      });
-    }
     return Response.json({ error: 'Failed to fetch' }, { status: 500 });
   }
 }
