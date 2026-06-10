@@ -7,8 +7,13 @@ import Flag from './Flag';
 export default function ContextMenu() {
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [pathname, setPathname] = useState('');
   const menuRef = useRef(null);
   const firstItemRef = useRef(null);
+
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
 
   useEffect(() => {
     const handleContextMenu = (e) => {
@@ -84,6 +89,14 @@ export default function ContextMenu() {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
+    } else if (pathname !== '/') {
+      window.location.href = '/#' + id;
+    }
+  };
+
+  const handleNavigate = (path) => {
+    if (pathname !== path) {
+      window.location.href = path;
     }
   };
 
@@ -120,7 +133,7 @@ export default function ContextMenu() {
           <button className={styles.item} onClick={() => handleScrollTo('about')}>
             <span>👤</span> About Sejed
           </button>
-          <button className={styles.item} onClick={() => handleScrollTo('palestine')}>
+          <button className={styles.item} onClick={() => handleNavigate('/palestine')}>
             <span style={{ display: 'inline-flex', alignItems: 'center' }}><Flag country="PS" size="sm" /></span> Palestine Solidarity
           </button>
           <button className={styles.item} onClick={handleCopyDiscord}>
